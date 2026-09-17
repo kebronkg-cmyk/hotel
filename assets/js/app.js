@@ -15,18 +15,56 @@
     }, cfg);
   }
 
-  /* Buchungslink: solange die Buchungsmaschine nicht eingetragen ist,
-     leiten die Buttons auf die Kontaktseite. */
-  function bookingHref() {
+  /* --- Buchungslink --------------------------------------------------
+     Baut die URL zur Buchungsmaschine zusammen. Die Parameternamen stehen
+     in config.js unter "bookingParams", damit sie ohne Eingriff in diesen
+     Code an die jeweilige Buchungsmaschine angepasst werden koennen.
+     Solange keine echte Buchungs-URL hinterlegt ist, wird auf die in
+     "bookingFallback" genannte Seite verwiesen. */
+
+  function bookingKonfiguriert() {
     var url = cfg.bookingUrl || '';
-    if (!url || url.indexOf('example.com') !== -1) {
-      return cfg.bookingFallback || 'kontakt.html';
-    }
-    return url;
+    return url.indexOf('http') === 0 && url.indexOf('example.com') === -1;
   }
 
-  function isExternalBooking() {
-    return bookingHref().indexOf('http') === 0;
+  /* Datum aus einem <input type="date"> (immer JJJJ-MM-TT) in das Format
+     bringen, das die Buchungsmaschine erwartet. */
+  function datumFormatieren(iso) {
+    if (!iso) { return ''; }
+    var teile = iso.split('-');
+    if (teile.length !== 3) { return iso; }
+    var format = cfg.bookingDateFormat || 'YYYY-MM-DD';
+    if (format === 'DD.MM.YYYY') { return teile[2] + '.' + teile[1] + '.' + teile[0]; }
+    if (format === 'DD-MM-YYYY') { return teile[2] + '-' + teile[1] + '-' + teile[0]; }
+    return iso;
+  }
+
+  /* daten = { arrival: '2026-10-01', departure: '2026-10-03', adults: '2' } */
+  function bookingHref(daten) {
+    if (!bookingKonfiguriert()) {
+      return cfg.bookingFallback || 'kontakt.html';
+    }
+
+    var url = cfg.bookingUrl;
+    var namen = cfg.bookingParams || {};
+    var teile = [];
+
+    Object.keys(daten || {}).forEach(function (schluessel) {
+      var name = namen[schluessel];
+      var wert = daten[schluessel];
+      if (!name || !wert) { return; }
+      if (schluessel === 'arrival' || schluessel === 'departure') {
+        wert = datumFormatieren(wert);
+      }
+      teile.push(encodeURIComponent(name) + '=' + encodeURIComponent(wert));
+    });
+
+    if (!teile.length) { return url; }
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + teile.join('&');
+  }
+
+  function externeBuchung() {
+    return bookingKonfiguriert();
   }
 
   /* --- Texte --------------------------------------------------------- */
@@ -42,7 +80,7 @@
 
     if (key === 'booking') {
       val = bookingHref();
-      if (isExternalBooking()) {
+      if (externeBuchung()) {
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener');
       }
@@ -70,6 +108,59 @@
   /* --- Jahreszahl im Footer ------------------------------------------ */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = String(new Date().getFullYear());
+  });
+
+  /* --- Direktbuchungs-Vorteile ---------------------------------------
+     Inhalte stehen in config.js unter "directBenefits". */
+  var vorteileZiel = document.querySelector('[data-benefits]');
+  if (vorteileZiel && Array.isArray(cfg.directBenefits) && cfg.directBenefits.length) {
+    vorteileZiel.innerHTML = '';
+    cfg.directBenefits.forEach(function (v) {
+      var li = document.createElement('li');
+      var stark = document.createElement('strong');
+      stark.textContent = v.title || '';
+      li.appendChild(stark);
+      li.appendChild(document.createTextNode(v.text || ''));
+      vorteileZiel.appendChild(li);
+    });
+  }
+
+  /* --- Buchungsformular im Startbereich -------------------------------
+     Die Datumsfelder werden als Parameter an die Buchungs-URL gehaengt. */
+  document.querySelectorAll('[data-booking-form]').forEach(function (bf) {
+    var hinweis = bf.querySelector('[data-booking-note]');
+
+    /* Kein Datum in der Vergangenheit anbieten */
+    var heute = new Date().toISOString().slice(0, 10);
+    var an = bf.elements.arrival;
+    var ab = bf.elements.departure;
+    if (an) { an.min = heute; }
+    if (ab) { ab.min = heute; }
+
+    /* Abreise darf nicht vor der Anreise liegen */
+    if (an && ab) {
+      an.addEventListener('change', function () {
+        ab.min = an.value || heute;
+        if (ab.value && ab.value <= an.value) { ab.value = ''; }
+      });
+    }
+
+    bf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var daten = {
+        arrival: an ? an.value : '',
+        departure: ab ? ab.value : '',
+        adults: bf.elements.adults ? bf.elements.adults.value : ''
+      };
+      var ziel = bookingHref(daten);
+
+      if (!bookingKonfiguriert()) {
+        if (hinweis) { hinweis.hidden = false; }
+        window.location.href = ziel;
+        return;
+      }
+      window.open(ziel, '_blank', 'noopener');
+    });
   });
 
   /* --- Kontaktformular ----------------------------------------------- */

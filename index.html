@@ -41,24 +41,63 @@
 <main id="inhalt">
 
 <div class="hero">
-  <img src="assets/img/aussen.jpg" alt="Au&szlig;enansicht des Hotel Montree in der Dachauer Stra&szlig;e" width="1600" height="1067">
+  <img src="assets/img/aussen.jpg" alt="Au&szlig;enansicht des Hotel Montree in der Dachauer Stra&szlig;e" width="1600" height="1067" fetchpriority="high">
 </div>
 
 <div class="wrap">
   <div class="hero-text">
-    <p><span class="badge">Direkt buchen &amp; sparen</span></p>
-    <h1>Budgethotel in M&uuml;nchen &ndash; zu Fu&szlig; zum Hauptbahnhof</h1>
+    <h1>Hotel Montree &ndash; zentral am M&uuml;nchner Hauptbahnhof</h1>
     <p class="lead">
-      Das Hotel Montree liegt in der <span data-cfg="street">Dachauer Stra&szlig;e 91</span>,
-      rund 1&nbsp;km vom M&uuml;nchner Hauptbahnhof entfernt: einfache, saubere Zimmer zu
-      fairen Preisen, pers&ouml;nlich gef&uuml;hrt und ruhig gelegen.
+      Einfache, saubere Zimmer zu einem fairen Preis &ndash; in der
+      <span data-cfg="street">Dachauer Stra&szlig;e 91</span>, wenige Minuten vom
+      Hauptbahnhof und von der U-Bahn entfernt.
     </p>
-    <!-- TODO: Die Aussagen zu Leistungen, Preisen und Stornoregeln vor dem
-         Live-Gang durch das Haus pr&uuml;fen lassen. -->
-    <div class="cta-reihe">
-      <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Zimmer direkt buchen</a>
-      <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Anrufen: <span data-cfg="phone">089-5427190</span></a>
-    </div>
+
+    <!-- Buchungsformular: Anreise/Abreise werden als Parameter an die
+         Buchungs-URL angeh&auml;ngt. Die Parameternamen stehen in
+         assets/js/config.js unter "bookingParams". -->
+    <form class="buchen" data-booking-form>
+      <div class="buchen-felder">
+        <div class="feld">
+          <label for="anreise">Anreise</label>
+          <input type="date" id="anreise" name="arrival">
+        </div>
+        <div class="feld">
+          <label for="abreise">Abreise</label>
+          <input type="date" id="abreise" name="departure">
+        </div>
+        <div class="feld">
+          <label for="personen">Personen</label>
+          <select id="personen" name="adults">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn btn-haupt btn-gross btn-block" type="submit">Direkt buchen &ndash; bester Preis</button>
+
+      <p class="hinweis" data-booking-note hidden>
+        Die Online-Buchung ist noch nicht freigeschaltet. Wir leiten Sie zur
+        Kontaktseite weiter &ndash; oder rufen Sie uns einfach an.
+      </p>
+      <p class="hinweis">
+        Kein Zwischenh&auml;ndler, keine Buchungsgeb&uuml;hr. Fragen?
+        <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+      </p>
+    </form>
+
+    <!-- Die drei Vorteile stehen in assets/js/config.js unter
+         "directBenefits" und k&ouml;nnen dort frei ge&auml;ndert werden. -->
+    <ul class="vorteile vorteile-3" data-benefits>
+      <li><strong>Bester Preis garantiert</strong>Direkt gebucht zahlen Sie nie mehr als auf einem Buchungsportal.</li>
+      <li><strong>Kostenlose Stornierung bis [X]</strong>Bis [X Uhr am Anreisetag] kostenfrei stornierbar.</li>
+      <li><strong>Fr&uuml;hst&uuml;cks-Rabatt</strong>Bei Direktbuchung bekommen Sie das Fr&uuml;hst&uuml;ck f&uuml;r [X] statt [Y].</li>
+    </ul>
   </div>
 </div>
 

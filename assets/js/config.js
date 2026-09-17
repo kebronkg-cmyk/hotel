@@ -13,12 +13,45 @@ window.HOTEL_CONFIG = {
   /* --- Name ---------------------------------------------------------- */
   name: 'Hotel Montree',
 
-  /* --- Buchung ------------------------------------------------------- */
+  /* --- Buchung (BOOKING_URL) ----------------------------------------- */
   /* TODO: URL der eigenen Buchungsmaschine eintragen.
      Solange hier ein Platzhalter steht, fuehren alle "Direkt buchen"-
      Buttons auf die Kontaktseite (siehe bookingFallback). */
   bookingUrl: 'https://buchung.example.com/hotel-montree',
   bookingFallback: 'kontakt.html',
+
+  /* Parameternamen der Buchungsmaschine.
+     Jede Buchungsmaschine nennt die Felder anders - hier anpassen, z. B.
+     arrival/departure, checkin/checkout, from/to, arrivalDate/departureDate.
+     Ein leerer Wert bedeutet: dieser Parameter wird nicht angehaengt. */
+  bookingParams: {
+    arrival:   'arrival',     // Anreisedatum
+    departure: 'departure',   // Abreisedatum
+    adults:    'adults',      // Anzahl Personen
+    rooms:     'rooms'        // Anzahl Zimmer
+  },
+
+  /* Datumsformat, das die Buchungsmaschine erwartet:
+     'YYYY-MM-DD' (Standard), 'DD.MM.YYYY' oder 'DD-MM-YYYY'. */
+  bookingDateFormat: 'YYYY-MM-DD',
+
+  /* --- Direktbuchungs-Vorteile im Startbereich ------------------------ */
+  /* TODO: Texte durch die tatsaechlichen Konditionen des Hauses ersetzen.
+     Drei Eintraege passen am besten ins Layout. */
+  directBenefits: [
+    {
+      title: 'Bester Preis garantiert',
+      text: 'Direkt gebucht zahlen Sie nie mehr als auf einem Buchungsportal.'
+    },
+    {
+      title: 'Kostenlose Stornierung bis [X]',
+      text: 'Bis [X Uhr am Anreisetag / X Tage vor Anreise] kostenfrei stornierbar.'
+    },
+    {
+      title: 'Frühstücks-Rabatt',
+      text: 'Bei Direktbuchung bekommen Sie das Frühstück für [X] statt [Y].'
+    }
+  ],
 
   /* --- Telefon ------------------------------------------------------- */
   phone: '089-5427190',            // Anzeige-Schreibweise
