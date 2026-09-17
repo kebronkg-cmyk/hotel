@@ -250,15 +250,39 @@ Im Quelltext sind alle offenen Stellen mit `TODO` markiert:
 7. **Bewertungen** erst eintragen, wenn echte vorliegen (siehe oben).
 8. **Bildnachweis** im Impressum ergänzen, sobald echte Fotos verwendet werden.
 
-## Veröffentlichen über GitHub Pages
+## Die Seite ist veröffentlicht
 
-1. Im Repository: *Settings → Pages*.
-2. Unter *Build and deployment* die Quelle **Deploy from a branch** wählen,
-   Branch und Ordner `/ (root)` auswählen, speichern.
-3. Nach wenigen Minuten ist die Seite unter der angezeigten Adresse erreichbar.
+**https://kebronkg-cmyk.github.io/hotel/**
 
-Die Datei `.nojekyll` sorgt dafür, dass GitHub Pages die Dateien unverändert
-ausliefert. Ein Build-Schritt ist nicht nötig.
+GitHub Pages liefert den Branch **`gh-pages`** aus. Der Branch wurde angelegt,
+wodurch Pages automatisch aktiv wurde; ein Build-Schritt ist nicht nötig, die
+Datei `.nojekyll` sorgt dafür, dass die Dateien unverändert ausgeliefert werden.
+
+### Live-Stand aktualisieren
+
+Änderungen zuerst wie gewohnt auf den Arbeitsbranch pushen, dann den Live-Stand
+nachziehen:
+
+```
+git push origin claude/hotel-montree-website-52xw91:gh-pages
+```
+
+Nach ein bis zwei Minuten ist die neue Fassung online. Den Fortschritt zeigt im
+Repository der Reiter *Actions* unter „pages build and deployment".
+
+### Die Adresse ändern
+
+Soll die Seite später unter einer eigenen Domain laufen: im Repository unter
+*Settings → Pages* die Domain unter *Custom domain* eintragen und beim
+Domain-Anbieter einen CNAME auf `kebronkg-cmyk.github.io` setzen. Danach die
+Basis-URL der `hreflang`-Angaben anpassen (siehe oben).
+
+### Wichtig vor dem echten Start
+
+Die Seite ist öffentlich erreichbar, wer die Adresse kennt, sieht sie. Durch
+`<meta name="robots" content="noindex">` taucht sie **nicht** in Suchmaschinen
+auf – das bleibt auch so, bis diese Zeile entfernt wird. Bis dahin sind noch
+Platzhalter sichtbar (Bilder, Preise, Impressum, Bewertungen).
 
 ## Lokal ansehen
 
