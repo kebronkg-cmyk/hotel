@@ -65,6 +65,28 @@ Ein leerer Parametername bedeutet: dieser Wert wird nicht übergeben.
 |---|---|
 | `directBenefits` | drei Vorteilskacheln direkt unter dem Buchungsformular |
 | `bookingReasons` | Block „Direkt bei uns buchen lohnt sich" |
+| `rooms` | die Zimmerkarten auf `zimmer.html` |
+
+### Zimmer pflegen
+
+Die Zimmerkarten werden aus dem Array `rooms` in `config.js` erzeugt:
+
+```js
+{
+  id: 'einzelzimmer',        // wird als roomType an die Buchungs-URL übergeben
+  name: 'Einzelzimmer',
+  image: 'zimmer-einzel.jpg',// Datei in assets/img/
+  size: 'ca. [X] m²',
+  persons: '1 Person',
+  price: '',                 // '69' ergibt "ab 69 €/Nacht", leer = Preis auf Anfrage
+  text: 'Kompaktes Zimmer …',
+  features: ['wlan', 'bad', 'tv', 'schreibtisch']
+}
+```
+
+Mögliche Werte für `features` (jeweils mit Icon): `wlan`, `bad`, `tv`,
+`schreibtisch`, `safe`, `fenster`. Ein weiteres Zimmer ist ein weiterer Eintrag
+im Array – am HTML muss nichts geändert werden.
 
 ### WhatsApp
 

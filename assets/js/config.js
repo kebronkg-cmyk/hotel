@@ -28,7 +28,8 @@ window.HOTEL_CONFIG = {
     arrival:   'arrival',     // Anreisedatum
     departure: 'departure',   // Abreisedatum
     adults:    'adults',      // Anzahl Personen
-    rooms:     'rooms'        // Anzahl Zimmer
+    rooms:     'rooms',       // Anzahl Zimmer
+    roomType:  'roomType'     // Zimmertyp (wird vom Buchen-Button der Karte gesetzt)
   },
 
   /* Datumsformat, das die Buchungsmaschine erwartet:
@@ -89,6 +90,45 @@ window.HOTEL_CONFIG = {
   checkOut: 'bis 11:00 Uhr',
   receptionHours: '07:00 – 22:00 Uhr',
   breakfastHours: '07:00 – 10:00 Uhr',
+
+  /* --- Zimmer ---------------------------------------------------------
+     TODO: Namen, Größen, Ausstattung und Preise anpassen.
+     price: Zahl als Text, z. B. '69'. Leer lassen = "Preis auf Anfrage".
+     features: mögliche Werte sind
+       'wlan', 'bad', 'tv', 'schreibtisch', 'safe', 'fenster'
+     image: Dateiname in assets/img/ */
+  rooms: [
+    {
+      id: 'einzelzimmer',
+      name: 'Einzelzimmer',
+      image: 'zimmer-einzel.jpg',
+      size: 'ca. [X] m²',
+      persons: '1 Person',
+      price: '',
+      text: 'Kompaktes Zimmer für Alleinreisende – ideal für kurze Geschäftsreisen.',
+      features: ['wlan', 'bad', 'tv', 'schreibtisch']
+    },
+    {
+      id: 'doppelzimmer',
+      name: 'Doppelzimmer',
+      image: 'zimmer-doppel.jpg',
+      size: 'ca. [X] m²',
+      persons: '2 Personen',
+      price: '',
+      text: 'Wahlweise mit Doppelbett oder zwei Einzelbetten – bitte bei der Buchung angeben.',
+      features: ['wlan', 'bad', 'tv', 'schreibtisch']
+    },
+    {
+      id: 'mehrbettzimmer',
+      name: 'Mehrbettzimmer',
+      image: 'zimmer-dreibett.jpg',
+      size: 'ca. [X] m²',
+      persons: '3 bis 4 Personen',
+      price: '',
+      text: 'Für Freunde, Kollegen oder kleine Familien, die zusammen übernachten möchten.',
+      features: ['wlan', 'bad', 'tv']
+    }
+  ],
 
   /* --- Preise -------------------------------------------------------- */
   /* TODO: Ab-Preise eintragen, z. B. einzel: 'ab 69 €'.

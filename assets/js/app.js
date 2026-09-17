@@ -258,6 +258,53 @@
     });
   }
 
+  /* --- Zimmerkarten ----------------------------------------------------
+     Die Zimmer stehen als Array in config.js unter "rooms". */
+  var AUSSTATTUNG = {
+    wlan:         { icon: 'ic-wlan',         label: 'Kostenfreies WLAN' },
+    bad:          { icon: 'ic-bad',          label: 'Dusche/WC im Zimmer' },
+    tv:           { icon: 'ic-tv',           label: 'TV' },
+    schreibtisch: { icon: 'ic-schreibtisch', label: 'Schreibtisch' },
+    safe:         { icon: 'ic-safe',         label: 'Safe' },
+    fenster:      { icon: 'ic-fenster',      label: 'Zum Innenhof gelegen' }
+  };
+
+  function svgIcon(name) {
+    return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+         + '<use href="#' + name + '"></use></svg>';
+  }
+
+  var zimmerZiel = document.querySelector('[data-rooms]');
+  if (zimmerZiel && Array.isArray(cfg.rooms) && cfg.rooms.length) {
+    zimmerZiel.innerHTML = cfg.rooms.map(function (z) {
+      var preis = z.price
+        ? 'ab <strong>' + z.price + ' €</strong>/Nacht'
+        : '<strong>Preis auf Anfrage</strong>';
+
+      var merkmale = (z.features || []).map(function (f) {
+        var a = AUSSTATTUNG[f];
+        if (!a) { return ''; }
+        return '<li>' + svgIcon(a.icon) + '<span>' + a.label + '</span></li>';
+      }).join('');
+
+      var buchenZiel = bookingHref({ roomType: z.id });
+      var neuerTab = bookingKonfiguriert() ? ' target="_blank" rel="noopener"' : '';
+
+      return '<article class="karte">'
+           + '<img src="assets/img/' + z.image + '" alt="' + z.name + ' im Hotel Montree"'
+           + ' width="1600" height="1067" loading="lazy">'
+           + '<div class="karte-inhalt">'
+           + '<h3>' + z.name + '</h3>'
+           + '<p class="zimmer-eckdaten">' + (z.size || '') + ' · ' + (z.persons || '') + '</p>'
+           + '<p class="preis">' + preis + '</p>'
+           + '<p>' + (z.text || '') + '</p>'
+           + '<ul class="ausstattung">' + merkmale + '</ul>'
+           + '<a class="btn btn-haupt" href="' + buchenZiel + '"' + neuerTab + '>'
+           + z.name + ' buchen</a>'
+           + '</div></article>';
+    }).join('');
+  }
+
   /* --- Kontaktformular ----------------------------------------------- */
   /* Kein Server, kein Tracking: das Formular oeffnet das E-Mail-Programm
      mit vorbereitetem Text. */

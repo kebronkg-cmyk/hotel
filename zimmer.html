@@ -41,88 +41,59 @@
 
 <main id="inhalt">
 
+<!-- Icon-Sprite: wird von den Zimmerkarten per <use> verwendet. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="ic-wlan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M2.5 8.5a15 15 0 0 1 19 0"></path>
+    <path d="M5.5 12a10.5 10.5 0 0 1 13 0"></path>
+    <path d="M8.5 15.5a6 6 0 0 1 7 0"></path>
+    <circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"></circle>
+  </symbol>
+  <symbol id="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M12 3v4"></path>
+    <path d="M8 7h8l-1 3H9z"></path>
+    <path d="M9 14v1M12 14v2M15 14v1M10.5 18v1M13.5 18v1"></path>
+  </symbol>
+  <symbol id="ic-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+    <path d="M9 20h6"></path>
+  </symbol>
+  <symbol id="ic-schreibtisch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M3 9h18"></path>
+    <path d="M5 9v10M19 9v10"></path>
+    <path d="M5 14h6"></path>
+  </symbol>
+  <symbol id="ic-safe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+    <circle cx="11" cy="12" r="3.2"></circle>
+    <path d="M18 9v6"></path>
+  </symbol>
+  <symbol id="ic-fenster" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="4" y="4" width="16" height="16" rx="1.5"></rect>
+    <path d="M12 4v16M4 12h16"></path>
+  </symbol>
+</svg>
+
 <div class="wrap">
   <h1>Zimmer &amp; Preise</h1>
-  <p class="lead">Einfach, sauber, ruhig und fair kalkuliert. Alle Zimmer haben
-     Dusche/WC, kostenfreies WLAN und werden t&auml;glich gereinigt.</p>
-  <p><a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Verf&uuml;gbarkeit &amp; Preise pr&uuml;fen</a></p>
+  <p class="lead">Zweckm&auml;&szlig;ig, sauber und ruhig. Alle Zimmer haben Dusche/WC im
+     Zimmer und kostenfreies WLAN &ndash; und direkt gebucht sind sie am g&uuml;nstigsten.</p>
 </div>
 
 <section>
   <div class="wrap">
-    <div class="karten">
-
-      <article class="karte">
-        <img src="assets/img/zimmer-einzel.jpg" alt="Einzelzimmer" width="1600" height="1067" loading="lazy">
-        <div class="karte-inhalt">
-          <h3>Einzelzimmer</h3>
-          <p class="preis" data-price="einzel">Preis auf Anfrage</p>
-          <p>Kompaktes Zimmer f&uuml;r Alleinreisende &ndash; ideal f&uuml;r kurze Gesch&auml;ftsreisen oder einen Stopp auf der Durchreise.</p>
-          <ul class="merkmale">
-            <li>Einzelbett</li>
-            <li>Schreibtischplatz</li>
-            <li>Dusche/WC im Zimmer</li>
-            <li>Kostenfreies WLAN</li>
-            <li>T&auml;gliche Reinigung</li>
-          </ul>
-          <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
-        </div>
-      </article>
-
-      <article class="karte">
-        <img src="assets/img/zimmer-doppel.jpg" alt="Doppelzimmer" width="1600" height="1067" loading="lazy">
-        <div class="karte-inhalt">
-          <h3>Doppelzimmer</h3>
-          <p class="preis" data-price="doppel">Preis auf Anfrage</p>
-          <p>F&uuml;r zwei Personen, wahlweise mit Doppelbett oder zwei Einzelbetten &ndash; bitte einfach bei der Buchung dazuschreiben.</p>
-          <ul class="merkmale">
-            <li>Doppelbett oder zwei Einzelbetten</li>
-            <li>Sitzgelegenheit</li>
-            <li>Dusche/WC im Zimmer</li>
-            <li>Kostenfreies WLAN</li>
-            <li>T&auml;gliche Reinigung</li>
-          </ul>
-          <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
-        </div>
-      </article>
-
-      <article class="karte">
-        <img src="assets/img/zimmer-dreibett.jpg" alt="Dreibettzimmer" width="1600" height="1067" loading="lazy">
-        <div class="karte-inhalt">
-          <h3>Dreibettzimmer</h3>
-          <p class="preis" data-price="dreibett">Preis auf Anfrage</p>
-          <p>F&uuml;r Freunde, Kollegen oder kleine Familien, die zusammen &uuml;bernachten m&ouml;chten.</p>
-          <ul class="merkmale">
-            <li>Drei Einzelbetten oder Doppelbett plus Einzelbett</li>
-            <li>Dusche/WC im Zimmer</li>
-            <li>Kostenfreies WLAN</li>
-            <li>T&auml;gliche Reinigung</li>
-          </ul>
-          <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
-        </div>
-      </article>
-
-      <article class="karte">
-        <img src="assets/img/zimmer-familie.jpg" alt="Familienzimmer" width="1600" height="1067" loading="lazy">
-        <div class="karte-inhalt">
-          <h3>Familien- &amp; Mehrbettzimmer</h3>
-          <p class="preis" data-price="familie">Preis auf Anfrage</p>
-          <p>Platz f&uuml;r bis zu vier Personen. Kinderbetten sind auf Anfrage m&ouml;glich &ndash; rufen Sie uns dazu am besten kurz an.</p>
-          <ul class="merkmale">
-            <li>Bis zu vier Betten</li>
-            <li>Dusche/WC im Zimmer</li>
-            <li>Kostenfreies WLAN</li>
-            <li>Kinderbett auf Anfrage</li>
-          </ul>
-          <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
-        </div>
-      </article>
-
+    <!-- Die Zimmer stehen als Array in assets/js/config.js unter "rooms". -->
+    <div class="karten" data-rooms>
+      <noscript>
+        <p>F&uuml;r die Zimmer&uuml;bersicht bitte JavaScript aktivieren &ndash; oder rufen Sie
+           uns einfach an: <a href="tel:+49895427190">089-5427190</a>.</p>
+      </noscript>
     </div>
+
     <p class="hinweis" style="margin-top:1rem">
-      <!-- TODO: Ab-Preise in assets/js/config.js unter "prices" eintragen. -->
-      Preise sind tagesabh&auml;ngig. Die tagesaktuellen Preise sehen Sie in der
-      Buchungsstrecke oder erfahren sie telefonisch unter
+      <!-- TODO: Preise und Zimmergroessen in assets/js/config.js unter "rooms" eintragen. -->
+      Die Preise sind tagesabh&auml;ngig. Den tagesaktuellen Preis sehen Sie nach Eingabe
+      Ihres Reisezeitraums oder telefonisch unter
       <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>.
     </p>
   </div>
@@ -131,38 +102,96 @@
 <section>
   <div class="wrap">
     <div class="kasten">
-      <h2>Direkt gebucht ist besser gebucht</h2>
-      <ul class="vorteile">
-        <li><strong>Kein Portalaufschlag</strong> Die gesparte Provision steckt im Preis.</li>
-        <li><strong>W&uuml;nsche sind m&ouml;glich</strong> Etage, ruhiges Zimmer, Betten getrennt oder zusammen.</li>
-        <li><strong>Direkte Absprache</strong> Bei sp&auml;ter Anreise oder ge&auml;nderten Pl&auml;nen einfach anrufen.</li>
+      <h2>Direkt bei uns buchen lohnt sich</h2>
+      <ul class="vorteile" data-reasons>
+        <li><strong>Bester Preis garantiert</strong>Auf unserer Seite zahlen Sie nie mehr als &uuml;ber ein Buchungsportal.</li>
+        <li><strong>Keine Buchungsgeb&uuml;hr</strong>Sie zahlen den Zimmerpreis &ndash; sonst nichts.</li>
+        <li><strong>Kostenlose Stornierung bis [X]</strong>Bis [X Uhr am Anreisetag] kostenfrei stornierbar.</li>
       </ul>
-      <p style="margin-top:1rem"><a class="btn btn-haupt btn-block" href="kontakt.html" data-cfg-href="booking">Jetzt direkt buchen</a></p>
+      <div class="doppel-cta" style="margin-top:1rem">
+        <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
+        <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Anrufen</a>
+      </div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Ausstattung im &Uuml;berblick</h2>
-    <table class="daten">
-      <tbody>
-        <tr><th>Im Zimmer</th><td>Dusche/WC, Handt&uuml;cher, Bettw&auml;sche, Schrank oder Kleiderstange, kostenfreies WLAN</td></tr>
-        <tr><th>Im Haus</th><td>Rezeption, Aufenthaltsbereich, Bar, Fr&uuml;hst&uuml;cksraum, Gep&auml;ckaufbewahrung</td></tr>
-        <tr><th>Fr&uuml;hst&uuml;ck</th><td><span data-cfg="breakfastHours">07:00 &ndash; 10:00 Uhr</span>, zubuchbar (<span data-price="fruehstueck">Preis auf Anfrage</span>)</td></tr>
-        <tr><th>Check-in</th><td><span data-cfg="checkIn">ab 15:00 Uhr</span></td></tr>
-        <tr><th>Check-out</th><td><span data-cfg="checkOut">bis 11:00 Uhr</span></td></tr>
-        <tr><th>Rezeption</th><td><span data-cfg="receptionHours">07:00 &ndash; 22:00 Uhr</span>, sp&auml;tere Anreise nach Absprache</td></tr>
-        <tr><th>Bezahlung</th><td>An der Rezeption vor Ort &ndash; bitte fragen Sie nach den akzeptierten Zahlungsarten</td></tr>
-      </tbody>
-    </table>
-    <div class="galerie" style="margin-top:1.25rem">
-      <figure><img src="assets/img/bad.jpg" alt="Badezimmer mit Dusche" width="1600" height="1067" loading="lazy"><figcaption>Bad mit Dusche/WC</figcaption></figure>
-      <figure><img src="assets/img/flur.jpg" alt="Flur im Hotel" width="1600" height="1067" loading="lazy"><figcaption>Flur &amp; Treppenhaus</figcaption></figure>
-      <figure><img src="assets/img/empfang.jpg" alt="Rezeption" width="1600" height="1067" loading="lazy"><figcaption>Rezeption</figcaption></figure>
+    <div class="zwei-spalten">
+      <div>
+        <h2>Fr&uuml;hst&uuml;ck</h2>
+        <p>Morgens gibt es ein einfaches Fr&uuml;hst&uuml;ck mit Br&ouml;tchen, Aufschnitt,
+           Marmelade, Joghurt, Obst sowie Kaffee und Tee. Sie k&ouml;nnen es bei der
+           Buchung dazunehmen oder sp&auml;ter an der Rezeption dazubuchen.</p>
+        <table class="daten">
+          <tbody>
+            <tr><th>Preis pro Person</th><td><span data-price="fruehstueck">Preis auf Anfrage</span></td></tr>
+            <tr><th>Uhrzeit</th><td><span data-cfg="breakfastHours">07:00 &ndash; 10:00 Uhr</span></td></tr>
+            <tr><th>Kinder</th><td>Preis auf Anfrage &ndash; sprechen Sie uns an</td></tr>
+          </tbody>
+        </table>
+        <p class="hinweis">
+          <!-- TODO: Fruehstueckspreis in assets/js/config.js unter prices.fruehstueck eintragen. -->
+          Preis in <code>config.js</code> hinterlegen.
+        </p>
+      </div>
+      <div>
+        <img src="assets/img/fruehstueck.jpg" alt="Fr&uuml;hst&uuml;cksraum im Hotel Montree" width="1600" height="1067" loading="lazy" style="border-radius:8px">
+      </div>
     </div>
   </div>
 </section>
+
+<section>
+  <div class="wrap">
+    <h2>H&auml;ufige Fragen</h2>
+
+    <details class="faq" name="faq">
+      <summary>Wann kann ich einchecken und auschecken?</summary>
+      <p>Check-in <span data-cfg="checkIn">ab 15:00 Uhr</span>,
+         Check-out <span data-cfg="checkOut">bis 11:00 Uhr</span>.
+         Die Rezeption ist <span data-cfg="receptionHours">07:00 &ndash; 22:00 Uhr</span> besetzt.
+         Wenn Sie sp&auml;ter ankommen, rufen Sie uns bitte kurz an &ndash; wir finden eine L&ouml;sung.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Kann ich mein Gep&auml;ck vor dem Check-in abstellen?</summary>
+      <p>Ja. Sie k&ouml;nnen Ihr Gep&auml;ck vor der Anreise und nach dem Auschecken bei uns
+         lassen und die Stadt in der Zwischenzeit erkunden. Wertsachen nehmen Sie bitte mit.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Gibt es Parkpl&auml;tze?</summary>
+      <p>Eine eigene Tiefgarage haben wir nicht. In der Umgebung gibt es &ouml;ffentliche
+         Parkh&auml;user, stra&szlig;enseitig gilt gr&ouml;&szlig;tenteils Parkraummanagement.
+         Auf der Seite <a href="lage.html">Lage &amp; Anfahrt</a> steht mehr dazu &ndash;
+         oder rufen Sie uns vor der Anreise an.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Sind Haustiere erlaubt?</summary>
+      <p><!-- TODO: Regelung des Hauses eintragen. -->
+         Haustiere sind nach Absprache m&ouml;glich [Regelung und ggf. Geb&uuml;hr eintragen].
+         Bitte geben Sie bei der Buchung Bescheid, damit wir ein passendes Zimmer einplanen.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Kann ich bar bezahlen?</summary>
+      <p><!-- TODO: Akzeptierte Zahlungsarten eintragen. -->
+         Barzahlung ist bei uns m&ouml;glich. Welche Karten wir au&szlig;erdem akzeptieren
+         [hier eintragen], sagen wir Ihnen gern am Telefon.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Ist die Direktbuchung wirklich g&uuml;nstiger?</summary>
+      <p>Ja. &Uuml;ber Portale zahlen wir eine Provision, die im Zimmerpreis steckt.
+         Bei der Direktbuchung entf&auml;llt sie &ndash; deshalb ist der Preis bei uns
+         mindestens genauso gut, meist besser.</p>
+    </details>
+  </div>
+</section>
+
 </main>
 
 <footer class="fuss">

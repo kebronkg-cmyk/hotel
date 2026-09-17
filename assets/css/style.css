@@ -299,6 +299,45 @@ textarea { min-height: 7rem; resize: vertical; }
 .feld-paar { display: grid; gap: .9rem; }
 
 
+
+/* --- Zimmerkarten ----------------------------------------------------- */
+.zimmer-eckdaten {
+  font-size: .9rem;
+  color: var(--text-leise);
+  margin: 0 0 .4rem;
+}
+.preis strong { font-size: 1.15rem; }
+
+.ausstattung {
+  list-style: none;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  display: grid;
+  gap: .35rem;
+  font-size: .92rem;
+  color: var(--text-leise);
+}
+.ausstattung li { display: flex; align-items: center; gap: .5rem; }
+.ic { width: 20px; height: 20px; flex: 0 0 20px; color: var(--blau-hell); }
+
+/* --- FAQ-Akkordeon ---------------------------------------------------- */
+details.faq summary { list-style: none; display: flex; align-items: center; gap: .6rem; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::before {
+  content: "+";
+  flex: 0 0 1.4rem;
+  width: 1.4rem; height: 1.4rem;
+  line-height: 1.3rem;
+  text-align: center;
+  border: 1px solid var(--linie);
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--blau-hell);
+  background: var(--weiss);
+}
+details.faq[open] summary::before { content: "\2212"; }
+details.faq summary:hover { color: var(--blau-hell); }
+
 /* --- Meldungen in Formularen ----------------------------------------- */
 .meldung {
   margin: .75rem 0 0;
