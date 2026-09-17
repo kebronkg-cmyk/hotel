@@ -34,6 +34,7 @@
       <li><a href="lage.html">Lage &amp; Anfahrt</a></li>
       <li><a href="muenchen-events.html">M&uuml;nchen &amp; Events</a></li>
       <li><a href="kontakt.html">Kontakt &amp; Buchung</a></li>
+      <li><a href="anfrage.html">Gruppen &amp; Firmen</a></li>
     </ul>
   </nav>
 </header>
@@ -79,7 +80,14 @@
         </div>
       </div>
 
-      <button class="btn btn-haupt btn-gross btn-block" type="submit">Direkt buchen &ndash; bester Preis</button>
+      <div class="doppel-cta">
+        <button class="btn btn-haupt btn-gross" type="submit">Direkt buchen</button>
+        <a class="btn btn-zweit btn-gross" href="tel:+49895427190" data-cfg-href="phoneLink">Anrufen</a>
+      </div>
+
+      <p style="margin:.4rem 0 0">
+        <a class="klein-link" href="anfrage.html">Gruppen- &amp; Firmenanfrage &rarr;</a>
+      </p>
 
       <p class="hinweis" data-booking-note hidden>
         Die Online-Buchung ist noch nicht freigeschaltet. Wir leiten Sie zur
@@ -104,26 +112,24 @@
 <section>
   <div class="wrap">
     <div class="kasten">
-      <h2>Warum direkt beim Hotel buchen?</h2>
+      <h2>Direkt bei uns buchen lohnt sich</h2>
       <p>Buchungsportale nehmen pro Buchung eine Provision. Wenn Sie direkt bei uns buchen,
          bleibt dieses Geld im Haus &ndash; und ein Teil davon bei Ihnen.</p>
 
-      <ul class="vorteile">
-        <li><strong>Bester Preis direkt bei uns</strong>
-            G&uuml;nstiger als &uuml;ber Portale &ndash; die Vermittlungsprovision sparen wir uns und Ihnen.</li>
-        <li><strong>Keine Buchungsgeb&uuml;hr</strong>
-            Sie zahlen den Zimmerpreis, sonst nichts.</li>
-        <li><strong>Zimmerw&uuml;nsche sind m&ouml;glich</strong>
-            Ruhiges Zimmer, Etage, Betten zusammen oder getrennt &ndash; einfach dazuschreiben.</li>
-        <li><strong>Sp&auml;te Anreise nach Absprache</strong>
-            Sagen Sie uns Bescheid, wenn es sp&auml;ter wird.</li>
-        <li><strong>Direkter Draht statt Callcenter</strong>
-            Sie sprechen mit dem Haus, nicht mit einer Hotline.</li>
-        <li><strong>Kostenfreies WLAN</strong>
-            In allen Zimmern und im Aufenthaltsbereich.</li>
+      <!-- Die Vorteile stehen in assets/js/config.js unter "bookingReasons". -->
+      <ul class="vorteile" data-reasons>
+        <li><strong>Bester Preis garantiert</strong>Auf unserer Seite zahlen Sie nie mehr als &uuml;ber ein Buchungsportal.</li>
+        <li><strong>Keine Buchungsgeb&uuml;hr</strong>Sie zahlen den Zimmerpreis &ndash; sonst nichts.</li>
+        <li><strong>Kostenlose Stornierung bis [X]</strong>Bis [X Uhr am Anreisetag] kostenfrei stornierbar.</li>
+        <li><strong>Zimmerw&uuml;nsche m&ouml;glich</strong>Ruhiges Zimmer, Etage, Betten zusammen oder getrennt.</li>
+        <li><strong>Sp&auml;te Anreise nach Absprache</strong>Sagen Sie uns Bescheid, wenn es sp&auml;ter wird.</li>
+        <li><strong>Direkter Draht statt Callcenter</strong>Sie sprechen mit dem Haus, nicht mit einer Hotline.</li>
       </ul>
 
-      <p style="margin-top:1rem"><a class="btn btn-haupt btn-block" href="kontakt.html" data-cfg-href="booking">Verf&uuml;gbarkeit pr&uuml;fen</a></p>
+      <div class="doppel-cta" style="margin-top:1rem">
+        <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Verf&uuml;gbarkeit pr&uuml;fen</a>
+        <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Anrufen</a>
+      </div>
     </div>
   </div>
 </section>
@@ -311,6 +317,7 @@
           <li><a href="lage.html">Lage &amp; Anfahrt</a></li>
           <li><a href="muenchen-events.html">M&uuml;nchen &amp; Events</a></li>
           <li><a href="kontakt.html">Kontakt &amp; Buchung</a></li>
+          <li><a href="anfrage.html">Gruppen &amp; Firmen</a></li>
         </ul>
       </div>
       <div>
@@ -330,8 +337,10 @@
 </footer>
 
 <div class="leiste">
+  <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Buchen</a>
   <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Anrufen</a>
-  <a class="btn btn-haupt" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
+  <!-- WhatsApp erscheint nur, wenn in config.js eine Nummer hinterlegt ist. -->
+  <a class="btn btn-zweit" href="#" data-whatsapp hidden>WhatsApp</a>
 </div>
 
 <script src="assets/js/config.js"></script>

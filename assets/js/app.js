@@ -163,6 +163,101 @@
     });
   });
 
+  /* --- WhatsApp -------------------------------------------------------
+     Der Button erscheint nur, wenn in config.js eine Nummer hinterlegt ist. */
+  var waNummer = (cfg.whatsapp || '').replace(/[^0-9]/g, '');
+  document.querySelectorAll('[data-whatsapp]').forEach(function (el) {
+    if (!waNummer) { el.hidden = true; return; }
+    el.setAttribute('href', 'https://wa.me/' + waNummer);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+    el.hidden = false;
+  });
+
+  /* --- Block "Direkt bei uns buchen lohnt sich" ------------------------ */
+  var gruendeZiel = document.querySelector('[data-reasons]');
+  if (gruendeZiel && Array.isArray(cfg.bookingReasons) && cfg.bookingReasons.length) {
+    gruendeZiel.innerHTML = '';
+    cfg.bookingReasons.forEach(function (g) {
+      var li = document.createElement('li');
+      var stark = document.createElement('strong');
+      stark.textContent = g.title || '';
+      li.appendChild(stark);
+      li.appendChild(document.createTextNode(g.text || ''));
+      gruendeZiel.appendChild(li);
+    });
+  }
+
+  /* --- Anfrageformular (Gruppen, Langzeit, Firmen) ---------------------
+     Ohne "formEndpoint" in config.js wird die Anfrage per E-Mail-Programm
+     verschickt (mailto). Mit Endpunkt wird sie per POST dorthin gesendet. */
+  var anfrage = document.querySelector('[data-request-form]');
+  if (anfrage) {
+    var meldung = anfrage.querySelector('[data-request-note]');
+
+    var zeigen = function (text, erfolg) {
+      if (!meldung) { return; }
+      meldung.textContent = text;
+      meldung.hidden = false;
+      meldung.className = erfolg ? 'meldung meldung-ok' : 'meldung';
+    };
+
+    anfrage.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var daten = {};
+      Array.prototype.forEach.call(anfrage.elements, function (f) {
+        if (!f.name || f.type === 'submit') { return; }
+        if (f.type === 'checkbox') { daten[f.name] = f.checked ? 'ja' : 'nein'; return; }
+        daten[f.name] = f.value;
+      });
+
+      var beschriftung = {
+        art: 'Art der Anfrage', name: 'Name', firma: 'Firma/Organisation',
+        email: 'E-Mail', telefon: 'Telefon', personen: 'Personen',
+        von: 'Zeitraum von', bis: 'Zeitraum bis', zimmer: 'Zimmeranzahl',
+        nachricht: 'Nachricht'
+      };
+
+      var endpunkt = cfg.formEndpoint || '';
+
+      if (endpunkt) {
+        var knopf = anfrage.querySelector('button[type="submit"]');
+        if (knopf) { knopf.disabled = true; }
+        zeigen('Anfrage wird gesendet …', false);
+
+        fetch(endpunkt, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(daten)
+        }).then(function (antwort) {
+          if (!antwort.ok) { throw new Error('Status ' + antwort.status); }
+          anfrage.reset();
+          zeigen('Vielen Dank! Ihre Anfrage ist bei uns eingegangen. '
+               + 'Wir melden uns so schnell wie möglich.', true);
+        })['catch'](function () {
+          zeigen('Das Senden hat leider nicht geklappt. Bitte schreiben Sie uns an '
+               + (cfg.email || '') + ' oder rufen Sie uns an: ' + (cfg.phone || ''), false);
+        })['finally'](function () {
+          if (knopf) { knopf.disabled = false; }
+        });
+        return;
+      }
+
+      var zeilen = Object.keys(beschriftung).map(function (k) {
+        return beschriftung[k] + ': ' + (daten[k] || '');
+      });
+
+      var betreff = 'Anfrage (' + (daten.art || 'Gruppe/Firma') + ') – ' + (cfg.name || '');
+      window.location.href = 'mailto:' + (cfg.email || '')
+        + '?subject=' + encodeURIComponent(betreff)
+        + '&body=' + encodeURIComponent(zeilen.join('\n'));
+
+      zeigen('Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, schreiben Sie '
+           + 'uns bitte an ' + (cfg.email || '') + '.', false);
+    });
+  }
+
   /* --- Kontaktformular ----------------------------------------------- */
   /* Kein Server, kein Tracking: das Formular oeffnet das E-Mail-Programm
      mit vorbereitetem Text. */

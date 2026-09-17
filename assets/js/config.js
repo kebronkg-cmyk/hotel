@@ -60,6 +60,19 @@ window.HOTEL_CONFIG = {
   /* --- E-Mail -------------------------------------------------------- */
   email: 'info@hotel-montree.de',
 
+  /* --- WhatsApp ------------------------------------------------------- */
+  /* TODO: WhatsApp-Nummer im internationalen Format ohne Leer- und
+     Sonderzeichen eintragen, z. B. '4917612345678'.
+     Leer lassen = der WhatsApp-Button wird überall ausgeblendet. */
+  whatsapp: '',
+
+  /* --- Anfrageformular (anfrage.html) --------------------------------- */
+  /* Leer lassen = das Formular öffnet das E-Mail-Programm (mailto).
+     Alternativ die URL eines Formular-Dienstes eintragen
+     (z. B. Formspree, Formsubmit, eigenes Skript). Dann werden die
+     Felder per POST dorthin geschickt. */
+  formEndpoint: '',
+
   /* --- Adresse ------------------------------------------------------- */
   street: 'Dachauer Straße 91',
   zip: '80335',

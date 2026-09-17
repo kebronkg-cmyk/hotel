@@ -298,6 +298,28 @@ input, select, textarea {
 textarea { min-height: 7rem; resize: vertical; }
 .feld-paar { display: grid; gap: .9rem; }
 
+
+/* --- Meldungen in Formularen ----------------------------------------- */
+.meldung {
+  margin: .75rem 0 0;
+  padding: .7rem .8rem;
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  font-size: .95rem;
+}
+.meldung-ok {
+  background: #e8f1ea;
+  border-color: #bcd9c8;
+  color: var(--gruen);
+  font-weight: 600;
+}
+
+/* --- Zwei gleich grosse Buttons --------------------------------------- */
+.doppel-cta { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.doppel-cta .btn { min-height: 52px; display: flex; align-items: center; justify-content: center; }
+.klein-link { display: inline-block; margin-top: .8rem; font-size: .95rem; }
+
 /* --- Fussbereich ----------------------------------------------------- */
 footer.fuss {
   margin-top: 2rem;
@@ -321,15 +343,15 @@ footer.fuss h2 { color: #fff; font-size: 1.05rem; margin-top: 0; }
 .leiste {
   position: fixed;
   left: 0; right: 0; bottom: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: .5rem;
   padding: .5rem;
   background: rgba(255,255,255,.97);
   border-top: 1px solid var(--linie);
   z-index: 20;
 }
-.leiste .btn { padding: .65rem .5rem; }
+.leiste .btn { flex: 1 1 0; padding: .65rem .35rem; min-height: 48px; }
+.leiste .btn[hidden] { display: none; }
 
 /* --- Groessere Bildschirme ------------------------------------------- */
 @media (min-width: 40rem) {

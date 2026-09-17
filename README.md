@@ -16,6 +16,7 @@ Ziel der Seite: **möglichst viele Direktbuchungen** statt Buchungen über Porta
 | `lage.html` | Lage, Entfernungen, Anfahrt, Parken |
 | `muenchen-events.html` | Veranstaltungsjahr in München, wann früh gebucht werden sollte |
 | `kontakt.html` | Kontaktdaten und Anfrageformular |
+| `anfrage.html` | Anfrage für Gruppen, Firmen und Langzeitaufenthalte |
 | `impressum.html` | Impressum |
 | `datenschutz.html` | Datenschutzerklärung |
 
@@ -25,14 +26,58 @@ Sämtliche Kontaktdaten, Links und Eckdaten stehen ausschließlich in
 **`assets/js/config.js`**. Eine Änderung dort wirkt auf allen Seiten:
 
 ```js
-bookingUrl: 'https://buchung.example.com/hotel-montree',  // Buchungsmaschine
-phone:      '089-5427190',
-phoneLink:  'tel:+49895427190',
-email:      'info@hotel-montree.de',
-street:     'Dachauer Straße 91',
-zip:        '80335',
-city:       'München',
+bookingUrl:   'https://buchung.example.com/hotel-montree',  // BOOKING_URL
+phone:        '089-5427190',
+phoneLink:    'tel:+49895427190',
+email:        'info@hotel-montree.de',
+whatsapp:     '',            // leer = WhatsApp-Button wird ausgeblendet
+formEndpoint: '',            // leer = Anfrageformular nutzt mailto
+street:       'Dachauer Straße 91',
+zip:          '80335',
+city:         'München',
 ```
+
+### Buchungsmaschine: Datumsfelder und Parameter
+
+Der Startbereich hat Felder für Anreise, Abreise und Personenzahl. Beim Klick auf
+„Direkt buchen" werden sie als Parameter an `bookingUrl` gehängt. Weil jede
+Buchungsmaschine die Felder anders benennt, stehen die Namen als Konstante in
+der Konfiguration:
+
+```js
+bookingParams: {
+  arrival:   'arrival',     // Anreisedatum
+  departure: 'departure',   // Abreisedatum
+  adults:    'adults',      // Personen
+  rooms:     'rooms'        // Zimmer
+},
+bookingDateFormat: 'YYYY-MM-DD',   // oder 'DD.MM.YYYY', 'DD-MM-YYYY'
+```
+
+Ergebnis z. B.:
+`https://…/start?arrival=2026-10-01&departure=2026-10-03&adults=2`
+
+Ein leerer Parametername bedeutet: dieser Wert wird nicht übergeben.
+
+### Texte, die ohne HTML-Kenntnisse änderbar sind
+
+| Schlüssel in `config.js` | erscheint |
+|---|---|
+| `directBenefits` | drei Vorteilskacheln direkt unter dem Buchungsformular |
+| `bookingReasons` | Block „Direkt bei uns buchen lohnt sich" |
+
+### WhatsApp
+
+`whatsapp: '4917612345678'` (internationales Format) blendet den WhatsApp-Button
+in der mobilen Leiste und auf der Anfrageseite ein. Bleibt das Feld leer, ist der
+Button überall ausgeblendet.
+
+### Anfrageformular (`anfrage.html`)
+
+Ist `formEndpoint` leer, öffnet das Formular das E-Mail-Programm (mailto). Trägt
+man dort die URL eines Formular-Dienstes ein (Formspree, Formsubmit, eigenes
+Skript), werden die Felder stattdessen als JSON per POST dorthin geschickt;
+Erfolgs- und Fehlermeldung zeigt die Seite selbst an.
 
 Dazu kommen Check-in-/Check-out-Zeiten, Rezeptions- und Frühstückszeiten,
 Ab-Preise (`prices`) sowie die Impressumsangaben (`legal`).
