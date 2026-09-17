@@ -178,6 +178,97 @@ window.HOTEL_CONFIG = {
     ]
   },
 
+  /* =====================================================================
+     Englische Fassung
+     ---------------------------------------------------------------------
+     Deutsch ist die Grundlage. Alles, was hier unter "en" steht,
+     überschreibt auf den Seiten im Ordner /en/ den deutschen Wert.
+     Was hier fehlt, wird auf Deutsch angezeigt - Reihenfolge und Anzahl
+     der Einträge sollten deshalb übereinstimmen.
+     ===================================================================== */
+  translations: {
+    en: {
+
+      /* Ziel der Buchen-Buttons, solange keine Buchungsmaschine hinterlegt ist */
+      bookingFallback: 'contact.html',
+
+      directBenefits: [
+        { title: 'Best price guaranteed',
+          text: 'Book direct and you will never pay more than on a booking portal.' },
+        { title: 'Free cancellation until [X]',
+          text: 'Cancel free of charge until [X] on the day of arrival / [X] days before arrival.' },
+        { title: 'Breakfast discount',
+          text: 'Book direct and breakfast costs [X] instead of [Y].' }
+      ],
+
+      bookingReasons: [
+        { title: 'Best price guaranteed',
+          text: 'On our own site you will never pay more than on a booking portal.' },
+        { title: 'No booking fee',
+          text: 'You pay for the room - nothing else.' },
+        { title: 'Free cancellation until [X]',
+          text: 'Cancel free of charge until [X] on the day of arrival / [X] days before arrival.' },
+        { title: 'Room requests welcome',
+          text: 'A quiet room, a certain floor, beds together or apart - just let us know.' },
+        { title: 'Late arrival by arrangement',
+          text: 'Tell us if you will get in later than [X] and we will sort it out.' },
+        { title: 'A real person, not a call centre',
+          text: 'You talk to the hotel itself.' }
+      ],
+
+      facts: [
+        { value: '5 min.', label: 'to the main station' },
+        { value: '24 h',   label: 'reception' },
+        { value: 'free',   label: 'Wi-Fi throughout' }
+      ],
+
+      rooms: [
+        {
+          id: 'einzelzimmer',
+          name: 'Single room',
+          image: 'zimmer-einzel.jpg',
+          size: 'approx. [X] m²',
+          persons: '1 guest',
+          price: '',
+          text: 'A compact room for solo travellers - handy for a short business trip.',
+          features: ['wlan', 'bad', 'tv', 'schreibtisch']
+        },
+        {
+          id: 'doppelzimmer',
+          name: 'Double room',
+          image: 'zimmer-doppel.jpg',
+          size: 'approx. [X] m²',
+          persons: '2 guests',
+          price: '',
+          text: 'With a double bed or two single beds - just tell us which you prefer when booking.',
+          features: ['wlan', 'bad', 'tv', 'schreibtisch']
+        },
+        {
+          id: 'mehrbettzimmer',
+          name: 'Multi-bed room',
+          image: 'zimmer-dreibett.jpg',
+          size: 'approx. [X] m²',
+          persons: '3 to 4 guests',
+          price: '',
+          text: 'For friends, colleagues or small families who want to stay together.',
+          features: ['wlan', 'bad', 'tv']
+        }
+      ],
+
+      reviews: {
+        score: '',
+        scoreMax: '5',
+        count: '',
+        source: '',
+        quotes: [
+          { text: '[Add a genuine quote from a guest review here.]', author: '[Name, month year]' },
+          { text: '[Add a genuine quote from a guest review here.]', author: '[Name, month year]' },
+          { text: '[Add a genuine quote from a guest review here.]', author: '[Name, month year]' }
+        ]
+      }
+    }
+  },
+
   /* --- Impressum / rechtliche Angaben -------------------------------- */
   /* TODO: Durch die tatsaechlichen Angaben des Betreibers ersetzen. */
   legal: {

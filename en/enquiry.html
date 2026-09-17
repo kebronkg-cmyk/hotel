@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The site is not yet released to search engines.
+     Remove this line on every page before going live. -->
+<meta name="robots" content="noindex">
+<title>Group, company &amp; long-stay enquiry &ndash; Hotel Montree Munich</title>
+<meta name="description" content="Enquire about groups, company bookings and long stays at the Hotel Montree in Munich &ndash; with guests, dates and number of rooms.">
+<meta property="og:title" content="Group, company &amp; long-stay enquiry &ndash; Hotel Montree Munich">
+<meta property="og:description" content="Enquire about groups, company bookings and long stays at the Hotel Montree in Munich &ndash; with guests, dates and number of rooms.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/img/og-bild.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="theme-color" content="#123a5c">
+<!-- Language versions. TODO: adjust the base URL once the domain is known. -->
+<link rel="alternate" hreflang="de" href="https://www.hotel-montree.de/anfrage.html">
+<link rel="alternate" hreflang="en" href="https://www.hotel-montree.de/en/enquiry.html">
+<link rel="alternate" hreflang="x-default" href="https://www.hotel-montree.de/anfrage.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23123a5c'/><text x='16' y='23' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle'>M</text></svg>">
+</head>
+<body>
+<a class="skip" href="#inhalt">Skip to content</a>
+
+<header class="kopf">
+  <div class="kopf-zeile">
+    <a class="marke" href="index.html">Hotel Montree<span>Budget hotel &middot; Munich</span></a>
+    <div class="kopf-aktionen">
+      <nav class="sprache" aria-label="Sprache / Language">
+        <a href="../anfrage.html" hreflang="de" lang="de">DE</a>
+        <span class="sprache-aktiv" aria-current="true">EN</span>
+      </nav>
+      <a class="kopf-tel" href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+      <a class="btn btn-haupt btn-klein" href="contact.html" data-cfg-href="booking">Book direct</a>
+    </div>
+  </div>
+  <nav class="haupt" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms.html">Rooms &amp; rates</a></li>
+      <li><a href="location.html">Getting here</a></li>
+      <li><a href="munich-events.html">Munich &amp; events</a></li>
+      <li><a href="contact.html">Contact &amp; booking</a></li>
+      <li><a href="enquiry.html" aria-current="page">Groups &amp; companies</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="inhalt">
+
+<div class="wrap">
+  <h1>Groups, companies &amp; longer stays</h1>
+  <p class="lead">Several rooms, a longer stay or a standing company rate? Tell us
+     briefly what you need and we will put together a personal offer.</p>
+
+  <div class="doppel-cta">
+    <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call: <span data-cfg="phone">089-5427190</span></a>
+    <a class="btn btn-zweit" href="mailto:info@hotel-montree.de" data-cfg-href="mailto">Send an email</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="zwei-spalten">
+      <div>
+        <h2>Your enquiry</h2>
+
+        <!-- Delivery: without "formEndpoint" in assets/js/config.js the form
+             opens the visitor's email programme. With a form service URL there,
+             the enquiry is sent by POST instead. -->
+        <form class="anfrage" data-request-form>
+
+          <div class="feld">
+            <label for="art">Type of enquiry</label>
+            <select id="art" name="art">
+              <option>Group trip</option>
+              <option>Company booking / corporate rate</option>
+              <option>Long stay (7 nights or more)</option>
+              <option>Contractors and fitters</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="feld-paar">
+            <div class="feld">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="feld">
+              <label for="firma">Company / organisation</label>
+              <input type="text" id="firma" name="firma" autocomplete="organization">
+            </div>
+          </div>
+
+          <div class="feld-paar">
+            <div class="feld">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="feld">
+              <label for="telefon">Phone</label>
+              <input type="tel" id="telefon" name="telefon" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="feld-paar">
+            <div class="feld">
+              <label for="von">From</label>
+              <input type="date" id="von" name="von">
+            </div>
+            <div class="feld">
+              <label for="bis">To</label>
+              <input type="date" id="bis" name="bis">
+            </div>
+          </div>
+
+          <div class="feld-paar">
+            <div class="feld">
+              <label for="personen">Guests</label>
+              <input type="number" id="personen" name="personen" min="1" max="200" value="10">
+            </div>
+            <div class="feld">
+              <label for="zimmer">Number of rooms</label>
+              <input type="number" id="zimmer" name="zimmer" min="1" max="100" value="5">
+            </div>
+          </div>
+
+          <div class="feld">
+            <label for="nachricht">Message</label>
+            <textarea id="nachricht" name="nachricht" placeholder="For example: arriving in the evening, breakfast included, one contact person, invoice to the company."></textarea>
+          </div>
+
+          <button class="btn btn-haupt btn-gross" type="submit">Send enquiry</button>
+          <p class="meldung" data-request-note hidden></p>
+
+          <p class="hinweis">
+            We use your details only to deal with this enquiry. There is more in our
+            <a href="privacy.html">privacy policy</a>.
+          </p>
+        </form>
+      </div>
+
+      <div>
+        <div class="kasten">
+          <h2>What we offer groups</h2>
+          <ul class="vorteile">
+            <li><strong>From [X] rooms</strong>Group rate on request.</li>
+            <li><strong>From [X] nights</strong>Reduced rate for longer stays.</li>
+            <li><strong>Company agreement</strong>Fixed rates for regular stays.</li>
+            <li><strong>Invoice to the company</strong>A single collective invoice by arrangement.</li>
+            <li><strong>One contact person</strong>The same person looks after the whole booking.</li>
+          </ul>
+          <p class="hinweis" style="margin-bottom:0">
+            We usually reply within one working day.
+          </p>
+        </div>
+
+        <div class="kasten" style="margin-top:1rem">
+          <h3>Prefer to talk it through?</h3>
+          <p>
+            Phone: <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a><br>
+            Email: <a href="mailto:info@hotel-montree.de" data-cfg-href="mailto"><span data-cfg="email">info@hotel-montree.de</span></a><br>
+            Reception: <span data-cfg="receptionHours">07:00 &ndash; 22:00</span>
+          </p>
+          <p style="margin-bottom:0">
+            <a class="btn btn-zweit btn-block" href="#" data-whatsapp hidden>Message us on WhatsApp</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kasten">
+      <h2>Booking direct pays off</h2>
+      <ul class="vorteile" data-reasons>
+        <li><strong>Best price guaranteed</strong>On our own site you will never pay more than on a booking portal.</li>
+        <li><strong>No booking fee</strong>You pay for the room &ndash; nothing else.</li>
+        <li><strong>Free cancellation until [X]</strong>Cancel free of charge until [X] on the day of arrival.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <h2>Hotel Montree</h2>
+        <p>
+          <span data-cfg="street">Dachauer Stra&szlig;e 91</span><br>
+          <span data-cfg="zip">80335</span> <span data-cfg="city">Munich</span><br>
+          Germany
+        </p>
+        <p>
+          Phone: <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a><br>
+          Email: <a href="mailto:info@hotel-montree.de" data-cfg-href="mailto"><span data-cfg="email">info@hotel-montree.de</span></a>
+        </p>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul class="fuss-liste">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms &amp; rates</a></li>
+          <li><a href="location.html">Getting here</a></li>
+          <li><a href="munich-events.html">Munich &amp; events</a></li>
+          <li><a href="contact.html">Contact &amp; booking</a></li>
+          <li><a href="enquiry.html">Groups &amp; companies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Booking direct pays off</h2>
+        <p>When you book with us, the commission the portals charge stays out of
+           the price &ndash; and part of it stays with you.</p>
+        <p><a class="btn btn-haupt btn-block" href="contact.html" data-cfg-href="booking">Book direct now</a></p>
+        <ul class="fuss-liste">
+          <li><a href="legal-notice.html">Legal notice</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fuss-schluss">&copy; <span data-year>2026</span> Hotel Montree &middot;
+       All details without guarantee &middot; This website uses no cookies and no tracking.</p>
+  </div>
+</footer>
+
+<div class="leiste">
+  <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Book</a>
+  <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call</a>
+  <!-- WhatsApp only appears when a number is set in config.js. -->
+  <a class="btn btn-zweit" href="#" data-whatsapp hidden>WhatsApp</a>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

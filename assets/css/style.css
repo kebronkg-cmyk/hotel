@@ -130,6 +130,25 @@ nav.haupt a[aria-current="page"] {
   font-weight: 600;
 }
 
+
+/* --- Sprachumschalter -------------------------------------------------- */
+.sprache {
+  display: flex;
+  align-items: center;
+  gap: .15rem;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.sprache a, .sprache span {
+  display: inline-block;
+  padding: .45rem .5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text-leise);
+}
+.sprache a:hover { background: var(--flaeche); color: var(--blau); }
+.sprache .sprache-aktiv { color: var(--blau); background: var(--flaeche); }
+
 /* --- Buttons --------------------------------------------------------- */
 .btn {
   display: inline-block;

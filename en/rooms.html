@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The site is not yet released to search engines.
+     Remove this line on every page before going live. -->
+<meta name="robots" content="noindex">
+<title>Rooms &amp; rates &ndash; Hotel Montree Munich</title>
+<meta name="description" content="Single, double and multi-bed rooms at the Hotel Montree in Munich, all with private shower and free Wi-Fi. Book direct without portal commission.">
+<meta property="og:title" content="Rooms &amp; rates &ndash; Hotel Montree Munich">
+<meta property="og:description" content="Single, double and multi-bed rooms at the Hotel Montree in Munich, all with private shower and free Wi-Fi. Book direct without portal commission.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/img/og-bild.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="theme-color" content="#123a5c">
+<!-- Language versions. TODO: adjust the base URL once the domain is known. -->
+<link rel="alternate" hreflang="de" href="https://www.hotel-montree.de/zimmer.html">
+<link rel="alternate" hreflang="en" href="https://www.hotel-montree.de/en/rooms.html">
+<link rel="alternate" hreflang="x-default" href="https://www.hotel-montree.de/zimmer.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23123a5c'/><text x='16' y='23' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle'>M</text></svg>">
+</head>
+<body>
+<a class="skip" href="#inhalt">Skip to content</a>
+
+<header class="kopf">
+  <div class="kopf-zeile">
+    <a class="marke" href="index.html">Hotel Montree<span>Budget hotel &middot; Munich</span></a>
+    <div class="kopf-aktionen">
+      <nav class="sprache" aria-label="Sprache / Language">
+        <a href="../zimmer.html" hreflang="de" lang="de">DE</a>
+        <span class="sprache-aktiv" aria-current="true">EN</span>
+      </nav>
+      <a class="kopf-tel" href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+      <a class="btn btn-haupt btn-klein" href="contact.html" data-cfg-href="booking">Book direct</a>
+    </div>
+  </div>
+  <nav class="haupt" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms.html" aria-current="page">Rooms &amp; rates</a></li>
+      <li><a href="location.html">Getting here</a></li>
+      <li><a href="munich-events.html">Munich &amp; events</a></li>
+      <li><a href="contact.html">Contact &amp; booking</a></li>
+      <li><a href="enquiry.html">Groups &amp; companies</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="inhalt">
+
+<!-- Icon sprite used by the room cards via <use>. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="ic-wlan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M2.5 8.5a15 15 0 0 1 19 0"></path>
+    <path d="M5.5 12a10.5 10.5 0 0 1 13 0"></path>
+    <path d="M8.5 15.5a6 6 0 0 1 7 0"></path>
+    <circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"></circle>
+  </symbol>
+  <symbol id="ic-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M12 3v4"></path>
+    <path d="M8 7h8l-1 3H9z"></path>
+    <path d="M9 14v1M12 14v2M15 14v1M10.5 18v1M13.5 18v1"></path>
+  </symbol>
+  <symbol id="ic-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+    <path d="M9 20h6"></path>
+  </symbol>
+  <symbol id="ic-schreibtisch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <path d="M3 9h18"></path>
+    <path d="M5 9v10M19 9v10"></path>
+    <path d="M5 14h6"></path>
+  </symbol>
+  <symbol id="ic-safe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+    <circle cx="11" cy="12" r="3.2"></circle>
+    <path d="M18 9v6"></path>
+  </symbol>
+  <symbol id="ic-fenster" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+    <rect x="4" y="4" width="16" height="16" rx="1.5"></rect>
+    <path d="M12 4v16M4 12h16"></path>
+  </symbol>
+</svg>
+
+<div class="wrap">
+  <h1>Rooms &amp; rates</h1>
+  <p class="lead">Practical, clean and quiet. Every room has its own shower and WC
+     plus free Wi-Fi &ndash; and booking direct is always the best way to get one.</p>
+</div>
+
+<section>
+  <div class="wrap">
+    <!-- The rooms are an array in assets/js/config.js ("rooms"). -->
+    <div class="karten" data-rooms data-image-base="../assets/img/">
+      <noscript>
+        <p>Please enable JavaScript to see the room overview &ndash; or simply call us
+           on <a href="tel:+49895427190">089-5427190</a>.</p>
+      </noscript>
+    </div>
+
+    <p class="hinweis" style="margin-top:1rem">
+      Rates vary by date. You will see the current rate once you enter your dates,
+      or you can ask us on
+      <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kasten">
+      <h2>Booking direct pays off</h2>
+      <ul class="vorteile" data-reasons>
+        <li><strong>Best price guaranteed</strong>On our own site you will never pay more than on a booking portal.</li>
+        <li><strong>No booking fee</strong>You pay for the room &ndash; nothing else.</li>
+        <li><strong>Free cancellation until [X]</strong>Cancel free of charge until [X] on the day of arrival.</li>
+      </ul>
+      <div class="doppel-cta" style="margin-top:1rem">
+        <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Book direct</a>
+        <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="zwei-spalten">
+      <div>
+        <h2>Breakfast</h2>
+        <p>We serve a simple breakfast in the morning: bread rolls, cold cuts, jam,
+           yoghurt, fruit, coffee and tea. Add it when you book, or decide later at
+           reception.</p>
+        <table class="daten">
+          <tbody>
+            <tr><th>Price per person</th><td><span data-price="fruehstueck">Price on request</span></td></tr>
+            <tr><th>Served</th><td><span data-cfg="breakfastHours">07:00 &ndash; 10:00</span></td></tr>
+            <tr><th>Children</th><td>Price on request &ndash; just ask us</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <img src="../assets/img/fruehstueck.jpg" alt="Breakfast room at the Hotel Montree" width="1600" height="1067" loading="lazy" style="border-radius:8px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+
+    <details class="faq" name="faq">
+      <summary>When can I check in and out?</summary>
+      <p>Check-in <span data-cfg="checkIn">from 15:00</span>, check-out
+         <span data-cfg="checkOut">until 11:00</span>. Reception is staffed
+         <span data-cfg="receptionHours">07:00 &ndash; 22:00</span>. If you will arrive
+         later, please give us a quick call and we will sort it out.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Can I leave my luggage before check-in?</summary>
+      <p>Yes. You can leave your bags with us before you check in and after you
+         check out, and go and see the city in the meantime. Please keep valuables
+         with you.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Is there parking?</summary>
+      <p>We do not have our own garage. There are public car parks nearby, and most
+         street parking is metered or reserved for residents. There is more on the
+         <a href="location.html">Getting here</a> page &ndash; or call us before you set off.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Are pets allowed?</summary>
+      <p>Pets are welcome by arrangement [add the house rule and any fee].
+         Please tell us when booking so we can put you in a suitable room.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Can I pay cash?</summary>
+      <p>Yes, you can pay cash with us. For the cards we also accept
+         [add accepted cards], just ask us on the phone.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Is booking direct really cheaper?</summary>
+      <p>Yes. Portals charge us a commission that ends up in the room rate. Book
+         direct and it does not apply &ndash; so our own price is at least as good,
+         usually better.</p>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <h2>Hotel Montree</h2>
+        <p>
+          <span data-cfg="street">Dachauer Stra&szlig;e 91</span><br>
+          <span data-cfg="zip">80335</span> <span data-cfg="city">Munich</span><br>
+          Germany
+        </p>
+        <p>
+          Phone: <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a><br>
+          Email: <a href="mailto:info@hotel-montree.de" data-cfg-href="mailto"><span data-cfg="email">info@hotel-montree.de</span></a>
+        </p>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul class="fuss-liste">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms &amp; rates</a></li>
+          <li><a href="location.html">Getting here</a></li>
+          <li><a href="munich-events.html">Munich &amp; events</a></li>
+          <li><a href="contact.html">Contact &amp; booking</a></li>
+          <li><a href="enquiry.html">Groups &amp; companies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Booking direct pays off</h2>
+        <p>When you book with us, the commission the portals charge stays out of
+           the price &ndash; and part of it stays with you.</p>
+        <p><a class="btn btn-haupt btn-block" href="contact.html" data-cfg-href="booking">Book direct now</a></p>
+        <ul class="fuss-liste">
+          <li><a href="legal-notice.html">Legal notice</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fuss-schluss">&copy; <span data-year>2026</span> Hotel Montree &middot;
+       All details without guarantee &middot; This website uses no cookies and no tracking.</p>
+  </div>
+</footer>
+
+<div class="leiste">
+  <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Book</a>
+  <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call</a>
+  <!-- WhatsApp only appears when a number is set in config.js. -->
+  <a class="btn btn-zweit" href="#" data-whatsapp hidden>WhatsApp</a>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

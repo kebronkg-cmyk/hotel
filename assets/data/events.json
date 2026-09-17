@@ -1,31 +1,64 @@
 {
-  "hinweis": "TODO: Zeitraeume jaehrlich aktualisieren. Bewusst ohne festes Jahr - bitte die Platzhalter durch die vom Veranstalter veroeffentlichten Termine ersetzen.",
+  "hinweis": "TODO: Zeitraeume jaehrlich aktualisieren. Bewusst ohne festes Jahr - bitte die Platzhalter durch die vom Veranstalter veroeffentlichten Termine ersetzen. Die Felder name und hinweis sind zweisprachig (de/en), zeitraum gilt fuer beide Sprachen.",
   "kategorien": [
     {
       "id": "oktoberfest",
-      "titel": "Oktoberfest",
       "termine": [
-        { "name": "Oktoberfest auf der Theresienwiese", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "16 bis 18 Tage, Ende traditionell am ersten Oktoberwochenende" },
-        { "name": "Trachten- und Schützenzug", "zeitraum": "[TT.MM.JJJJ]", "hinweis": "am ersten Wiesn-Sonntag" },
-        { "name": "Frühlingsfest (kleine Wiesn)", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "im April/Mai auf derselben Festwiese" }
+        {
+          "name": { "de": "Oktoberfest auf der Theresienwiese", "en": "Oktoberfest at the Theresienwiese" },
+          "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+          "hinweis": { "de": "16 bis 18 Tage, Ende traditionell am ersten Oktoberwochenende", "en": "16 to 18 days, traditionally ending on the first weekend in October" }
+        },
+        {
+          "name": { "de": "Trachten- und Schützenzug", "en": "Costume and riflemen's parade" },
+          "zeitraum": "[TT.MM.JJJJ]",
+          "hinweis": { "de": "am ersten Wiesn-Sonntag", "en": "on the first Sunday of the festival" }
+        },
+        {
+          "name": { "de": "Frühlingsfest (kleine Wiesn)", "en": "Frühlingsfest (spring festival)" },
+          "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+          "hinweis": { "de": "im April/Mai auf derselben Festwiese", "en": "in April/May on the same fairground" }
+        }
       ]
     },
     {
       "id": "messe",
-      "titel": "Messe München",
       "termine": [
-        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "Messegelände Riem" },
-        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "Messegelände Riem" },
-        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "MOC oder Zenith, je nach Veranstaltung" }
+        {
+          "name": { "de": "[Messename eintragen]", "en": "[add trade fair name]" },
+          "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+          "hinweis": { "de": "Messegelände Riem", "en": "Riem exhibition centre" }
+        },
+        {
+          "name": { "de": "[Messename eintragen]", "en": "[add trade fair name]" },
+          "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+          "hinweis": { "de": "Messegelände Riem", "en": "Riem exhibition centre" }
+        },
+        {
+          "name": { "de": "[Messename eintragen]", "en": "[add trade fair name]" },
+          "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+          "hinweis": { "de": "MOC oder Zenith, je nach Veranstaltung", "en": "MOC or Zenith, depending on the event" }
+        }
       ]
     },
     {
       "id": "fussball",
-      "titel": "Fußball in der Allianz Arena",
       "termine": [
-        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" },
-        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" },
-        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" }
+        {
+          "name": { "de": "[Heimspiel eintragen]", "en": "[add home match]" },
+          "zeitraum": "[TT.MM.JJJJ, HH:MM]",
+          "hinweis": { "de": "Allianz Arena, Fröttmaning", "en": "Allianz Arena, Fröttmaning" }
+        },
+        {
+          "name": { "de": "[Heimspiel eintragen]", "en": "[add home match]" },
+          "zeitraum": "[TT.MM.JJJJ, HH:MM]",
+          "hinweis": { "de": "Allianz Arena, Fröttmaning", "en": "Allianz Arena, Fröttmaning" }
+        },
+        {
+          "name": { "de": "[Heimspiel eintragen]", "en": "[add home match]" },
+          "zeitraum": "[TT.MM.JJJJ, HH:MM]",
+          "hinweis": { "de": "Allianz Arena, Fröttmaning", "en": "Allianz Arena, Fröttmaning" }
+        }
       ]
     }
   ]

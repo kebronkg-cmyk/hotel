@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The site is not yet released to search engines.
+     Remove this line on every page before going live. -->
+<meta name="robots" content="noindex">
+<title>Hotel Montree Munich &ndash; budget hotel near the central station</title>
+<meta name="description" content="Budget hotel in Munich, Dachauer Stra&szlig;e 91, a short walk from the central station. Book direct and skip the portal commission.">
+<meta property="og:title" content="Hotel Montree Munich &ndash; budget hotel near the central station">
+<meta property="og:description" content="Budget hotel in Munich, Dachauer Stra&szlig;e 91, a short walk from the central station. Book direct and skip the portal commission.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/img/og-bild.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="de_DE">
+<meta name="theme-color" content="#123a5c">
+<!-- Language versions. TODO: adjust the base URL once the domain is known. -->
+<link rel="alternate" hreflang="de" href="https://www.hotel-montree.de/index.html">
+<link rel="alternate" hreflang="en" href="https://www.hotel-montree.de/en/index.html">
+<link rel="alternate" hreflang="x-default" href="https://www.hotel-montree.de/index.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23123a5c'/><text x='16' y='23' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle'>M</text></svg>">
+</head>
+<body>
+<a class="skip" href="#inhalt">Skip to content</a>
+
+<header class="kopf">
+  <div class="kopf-zeile">
+    <a class="marke" href="index.html">Hotel Montree<span>Budget hotel &middot; Munich</span></a>
+    <div class="kopf-aktionen">
+      <nav class="sprache" aria-label="Sprache / Language">
+        <a href="../index.html" hreflang="de" lang="de">DE</a>
+        <span class="sprache-aktiv" aria-current="true">EN</span>
+      </nav>
+      <a class="kopf-tel" href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+      <a class="btn btn-haupt btn-klein" href="contact.html" data-cfg-href="booking">Book direct</a>
+    </div>
+  </div>
+  <nav class="haupt" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="rooms.html">Rooms &amp; rates</a></li>
+      <li><a href="location.html">Getting here</a></li>
+      <li><a href="munich-events.html">Munich &amp; events</a></li>
+      <li><a href="contact.html">Contact &amp; booking</a></li>
+      <li><a href="enquiry.html">Groups &amp; companies</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="inhalt">
+
+<div class="hero">
+  <img src="../assets/img/aussen.jpg" alt="The Hotel Montree seen from Dachauer Stra&szlig;e" width="1600" height="1067" fetchpriority="high">
+</div>
+
+<div class="wrap">
+  <div class="hero-text">
+    <h1>Hotel Montree &ndash; right by Munich central station</h1>
+    <p class="lead">
+      Simple, clean rooms at a fair price on
+      <span data-cfg="street">Dachauer Stra&szlig;e 91</span>, a short walk from
+      Munich central station and the underground.
+    </p>
+
+    <!-- Booking form: arrival and departure are passed to the booking URL as
+         parameters. The parameter names live in assets/js/config.js under
+         "bookingParams". -->
+    <form class="buchen" data-booking-form>
+      <div class="buchen-felder">
+        <div class="feld">
+          <label for="anreise">Arrival</label>
+          <input type="date" id="anreise" name="arrival">
+        </div>
+        <div class="feld">
+          <label for="abreise">Departure</label>
+          <input type="date" id="abreise" name="departure">
+        </div>
+        <div class="feld">
+          <label for="personen">Guests</label>
+          <select id="personen" name="adults">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="doppel-cta">
+        <button class="btn btn-haupt btn-gross" type="submit">Book direct</button>
+        <a class="btn btn-zweit btn-gross" href="tel:+49895427190" data-cfg-href="phoneLink">Call us</a>
+      </div>
+
+      <p style="margin:.4rem 0 0">
+        <a class="klein-link" href="enquiry.html">Group &amp; company enquiry &rarr;</a>
+      </p>
+
+      <p class="hinweis" data-booking-note hidden>
+        Online booking is not switched on yet. We are taking you to the contact
+        page &ndash; or simply give us a call.
+      </p>
+      <p class="hinweis">
+        No middleman, no booking fee. Questions?
+        <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+      </p>
+    </form>
+
+    <!-- The three benefits come from assets/js/config.js
+         ("directBenefits", English under translations.en). -->
+    <ul class="vorteile vorteile-3" data-benefits>
+      <li><strong>Best price guaranteed</strong>Book direct and you will never pay more than on a booking portal.</li>
+      <li><strong>Free cancellation until [X]</strong>Cancel free of charge until [X] on the day of arrival.</li>
+      <li><strong>Breakfast discount</strong>Book direct and breakfast costs [X] instead of [Y].</li>
+    </ul>
+
+    <!-- Values from assets/js/config.js ("facts"). -->
+    <ul class="fakten" data-facts>
+      <li><span class="fakt-wert">5 min.</span><span class="fakt-text">to the main station</span></li>
+      <li><span class="fakt-wert">24 h</span><span class="fakt-text">reception</span></li>
+      <li><span class="fakt-wert">free</span><span class="fakt-text">Wi-Fi throughout</span></li>
+    </ul>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kasten">
+      <h2>Booking direct pays off</h2>
+      <p>Booking portals take a commission on every reservation. Book with us
+         directly and that money stays in the house &ndash; and part of it with you.</p>
+
+      <!-- Content: assets/js/config.js, "bookingReasons". -->
+      <ul class="vorteile" data-reasons>
+        <li><strong>Best price guaranteed</strong>On our own site you will never pay more than on a booking portal.</li>
+        <li><strong>No booking fee</strong>You pay for the room &ndash; nothing else.</li>
+        <li><strong>Free cancellation until [X]</strong>Cancel free of charge until [X] on the day of arrival.</li>
+        <li><strong>Room requests welcome</strong>A quiet room, a certain floor, beds together or apart.</li>
+        <li><strong>Late arrival by arrangement</strong>Just tell us if you will get in late.</li>
+        <li><strong>A real person, not a call centre</strong>You talk to the hotel itself.</li>
+      </ul>
+
+      <div class="doppel-cta" style="margin-top:1rem">
+        <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Check availability</a>
+        <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Our rooms</h2>
+    <p>Every room is practical, clean and quiet &ndash; which is what you need for a
+       good night in Munich.</p>
+    <div class="karten">
+
+      <article class="karte">
+        <img src="../assets/img/zimmer-einzel.jpg" alt="Single room at the Hotel Montree" width="1600" height="1067" loading="lazy">
+        <div class="karte-inhalt">
+          <h3>Single room</h3>
+          <p class="preis" data-price="einzel">Price on request</p>
+          <ul class="merkmale">
+            <li>Single bed, desk</li>
+            <li>Private shower and WC</li>
+            <li>Free Wi-Fi</li>
+          </ul>
+          <a class="btn btn-zweit" href="rooms.html">See details</a>
+        </div>
+      </article>
+
+      <article class="karte">
+        <img src="../assets/img/zimmer-doppel.jpg" alt="Double room at the Hotel Montree" width="1600" height="1067" loading="lazy">
+        <div class="karte-inhalt">
+          <h3>Double room</h3>
+          <p class="preis" data-price="doppel">Price on request</p>
+          <ul class="merkmale">
+            <li>Double bed or two single beds</li>
+            <li>Private shower and WC</li>
+            <li>Free Wi-Fi</li>
+          </ul>
+          <a class="btn btn-zweit" href="rooms.html">See details</a>
+        </div>
+      </article>
+
+      <article class="karte">
+        <img src="../assets/img/zimmer-familie.jpg" alt="Family room at the Hotel Montree" width="1600" height="1067" loading="lazy">
+        <div class="karte-inhalt">
+          <h3>Family &amp; multi-bed rooms</h3>
+          <p class="preis" data-price="familie">Price on request</p>
+          <ul class="merkmale">
+            <li>Room for three or four people</li>
+            <li>Private shower and WC</li>
+            <li>Free Wi-Fi</li>
+          </ul>
+          <a class="btn btn-zweit" href="rooms.html">See details</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="zwei-spalten">
+      <div>
+        <h2>Close to the station, quietly set back</h2>
+        <p>Dachauer Stra&szlig;e runs from the central station towards the north of the
+           city. You are a few minutes from the trains, the underground and the
+           museum quarter around K&ouml;nigsplatz.</p>
+        <table class="daten">
+          <tbody>
+            <tr><th>Central station</th><td>approx. 1.0&nbsp;km, about a 12-minute walk</td></tr>
+            <tr><th>Stiglmaierplatz underground (U1/U7)</th><td>about 5 minutes on foot</td></tr>
+            <tr><th>K&ouml;nigsplatz &amp; the Pinakothek museums</th><td>10 to 15 minutes on foot</td></tr>
+            <tr><th>Theresienwiese (Oktoberfest)</th><td>20 to 25 minutes on foot</td></tr>
+            <tr><th>Marienplatz</th><td>about 10 minutes by S-Bahn or U-Bahn from the station</td></tr>
+          </tbody>
+        </table>
+        <p class="hinweis">All times are approximate.</p>
+        <p><a class="btn btn-zweit" href="location.html">Getting here &amp; parking</a></p>
+      </div>
+      <div>
+        <img src="../assets/img/hauptbahnhof.jpg" alt="Munich central station" width="1600" height="1067" loading="lazy" style="border-radius:8px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What guests say</h2>
+
+    <!-- TODO: add reviews in assets/js/config.js under "reviews".
+         Please use genuine, verifiable guest reviews only. While placeholders
+         are in place, the page marks the block as such. -->
+    <div class="bewertung">
+      <div class="note" data-review-score>
+        <span class="note-zahl">[Rating]</span><span class="note-skala">out of 5</span>
+      </div>
+      <p class="note-quelle" data-review-source>based on [number] reviews on [source]</p>
+    </div>
+
+    <div class="zitate" data-review-quotes>
+      <figure class="zitat">
+        <span class="badge badge-platzhalter">Placeholder</span>
+        <blockquote>[Add a genuine quote from a guest review here.]</blockquote>
+        <figcaption>[Name, month year]</figcaption>
+      </figure>
+    </div>
+
+    <p class="hinweis" data-review-placeholder-note>
+      These are placeholders for now. We only publish reviews from guests who
+      really have stayed with us.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>A look around the house</h2>
+    <p>Bar, breakfast room, hallway and rooms &ndash; tap an image to enlarge it.</p>
+
+    <ul class="galerie-liste" data-lightbox>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="../assets/img/bar.jpg" data-text="The bar at the Hotel Montree">
+          <img src="../assets/img/bar.jpg" alt="The bar at the Hotel Montree" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Bar</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="../assets/img/fruehstueck.jpg" data-text="Breakfast room">
+          <img src="../assets/img/fruehstueck.jpg" alt="Breakfast room" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Breakfast</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="../assets/img/flur.jpg" data-text="Hallway and staircase">
+          <img src="../assets/img/flur.jpg" alt="Hallway and staircase" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Hallway</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="../assets/img/zimmer-doppel.jpg" data-text="Double room">
+          <img src="../assets/img/zimmer-doppel.jpg" alt="Double room" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Room</span>
+        </button>
+      </li>
+    </ul>
+
+    <p style="margin-top:1rem">You can add breakfast when you book or later at
+       reception (<span data-price="fruehstueck">Price on request</span>,
+       <span data-cfg="breakfastHours">07:00 &ndash; 10:00</span>).</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+
+    <details class="faq" name="faq">
+      <summary>Is booking direct really cheaper?</summary>
+      <p>Yes. Portals charge us a commission that ends up in the room rate.
+         Book direct and it does not apply &ndash; so our own price is at least as
+         good, usually better.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>When can I check in and out?</summary>
+      <p>Check-in <span data-cfg="checkIn">from 15:00</span>, check-out
+         <span data-cfg="checkOut">until 11:00</span>. Reception is staffed
+         <span data-cfg="receptionHours">07:00 &ndash; 22:00</span>. Arriving later is
+         fine if you let us know &ndash; a quick call is enough.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Is there parking?</summary>
+      <p>We do not have our own garage. There are public car parks nearby, and
+         most street parking is metered or reserved for residents. You will find
+         more on the <a href="location.html">Getting here</a> page.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Can I cancel free of charge?</summary>
+      <p>The cancellation terms are shown when you book and repeated in your
+         confirmation. If your plans change, talk to us &ndash; with a direct booking
+         we have the most room to help.</p>
+    </details>
+
+    <details class="faq" name="faq">
+      <summary>Is the hotel accessible?</summary>
+      <p>This is an older building. Please call us beforehand and we will work
+         out together which room suits you.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kasten">
+      <h2>Reserve your room</h2>
+      <p>Booking online is quickest, but you are just as welcome to call or email
+         us &ndash; you will always get a personal reply.</p>
+      <div class="cta-reihe">
+        <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Book direct</a>
+        <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
+        <a class="btn btn-zweit" href="mailto:info@hotel-montree.de" data-cfg-href="mailto"><span data-cfg="email">info@hotel-montree.de</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div>
+        <h2>Hotel Montree</h2>
+        <p>
+          <span data-cfg="street">Dachauer Stra&szlig;e 91</span><br>
+          <span data-cfg="zip">80335</span> <span data-cfg="city">Munich</span><br>
+          Germany
+        </p>
+        <p>
+          Phone: <a href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a><br>
+          Email: <a href="mailto:info@hotel-montree.de" data-cfg-href="mailto"><span data-cfg="email">info@hotel-montree.de</span></a>
+        </p>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul class="fuss-liste">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms &amp; rates</a></li>
+          <li><a href="location.html">Getting here</a></li>
+          <li><a href="munich-events.html">Munich &amp; events</a></li>
+          <li><a href="contact.html">Contact &amp; booking</a></li>
+          <li><a href="enquiry.html">Groups &amp; companies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Booking direct pays off</h2>
+        <p>When you book with us, the commission the portals charge stays out of
+           the price &ndash; and part of it stays with you.</p>
+        <p><a class="btn btn-haupt btn-block" href="contact.html" data-cfg-href="booking">Book direct now</a></p>
+        <ul class="fuss-liste">
+          <li><a href="legal-notice.html">Legal notice</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fuss-schluss">&copy; <span data-year>2026</span> Hotel Montree &middot;
+       All details without guarantee &middot; This website uses no cookies and no tracking.</p>
+  </div>
+</footer>
+
+<div class="leiste">
+  <a class="btn btn-haupt" href="contact.html" data-cfg-href="booking">Book</a>
+  <a class="btn btn-zweit" href="tel:+49895427190" data-cfg-href="phoneLink">Call</a>
+  <!-- WhatsApp only appears when a number is set in config.js. -->
+  <a class="btn btn-zweit" href="#" data-whatsapp hidden>WhatsApp</a>
+</div>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -20,6 +20,67 @@ Ziel der Seite: **möglichst viele Direktbuchungen** statt Buchungen über Porta
 | `impressum.html` | Impressum |
 | `datenschutz.html` | Datenschutzerklärung |
 
+## Zweisprachigkeit (DE/EN)
+
+Deutsch liegt im Hauptverzeichnis, Englisch im Ordner `/en/`. Jede Seite hat ein
+Gegenstück, der Umschalter im Kopfbereich führt jeweils auf die passende Seite:
+
+| Deutsch | Englisch |
+|---|---|
+| `index.html` | `en/index.html` |
+| `zimmer.html` | `en/rooms.html` |
+| `lage.html` | `en/location.html` |
+| `muenchen-events.html` | `en/munich-events.html` |
+| `kontakt.html` | `en/contact.html` |
+| `anfrage.html` | `en/enquiry.html` |
+| `impressum.html` | `en/legal-notice.html` |
+| `datenschutz.html` | `en/privacy.html` |
+
+Beide Fassungen teilen sich CSS, JavaScript, Bilder und Termine – es gibt jeweils
+nur eine Datei davon.
+
+**Wie die Sprache erkannt wird:** am `lang`-Attribut des `<html>`-Elements
+(`de` bzw. `en`). Danach richtet sich, welche Texte das JavaScript einsetzt.
+
+**Übersetzte Inhalte** stehen in `config.js` unter `translations.en` und
+überschreiben dort die deutschen Werte (`directBenefits`, `bookingReasons`,
+`facts`, `rooms`, `reviews`, `bookingFallback`). Was dort fehlt, erscheint auf
+Deutsch – Reihenfolge und Anzahl der Einträge sollten also übereinstimmen.
+Telefonnummer, Adresse, Preise und Buchungs-URL gelten für beide Sprachen und
+stehen weiterhin nur einmal in der Konfiguration.
+
+**Termine** in `assets/data/events.json` sind pro Feld zweisprachig:
+
+```json
+{ "name":    { "de": "Trachten- und Schützenzug", "en": "Costume and riflemen's parade" },
+  "zeitraum": "[TT.MM.JJJJ]",
+  "hinweis": { "de": "am ersten Wiesn-Sonntag", "en": "on the first Sunday of the festival" } }
+```
+
+`zeitraum` gilt für beide Sprachen – Datumsangaben müssen also nur einmal
+gepflegt werden. Ein einfacher Text statt eines `{de, en}`-Objekts funktioniert
+auch und wird dann in beiden Sprachen gezeigt.
+
+**Feste Oberflächentexte**, die das Skript selbst erzeugt („Preis auf Anfrage",
+„ab X €/Nacht", Ausstattungsnamen, Lightbox-Beschriftungen, Formularmeldungen),
+stehen gesammelt in `assets/js/app.js` unter `TEXTE.de` und `TEXTE.en`.
+
+**hreflang:** Jede Seite verweist per `<link rel="alternate" hreflang="…">` auf
+beide Fassungen plus `x-default` (Deutsch). Diese Angaben brauchen absolute
+URLs; als Platzhalter steht `https://www.hotel-montree.de/` im Quelltext. Sobald
+die Domain feststeht:
+
+```
+sed -i 's|https://www.hotel-montree.de/|https://IHRE-DOMAIN/|g' *.html en/*.html
+```
+
+Bei der Gelegenheit auch `og:image` auf eine absolute URL umstellen – für die
+Vorschau in sozialen Netzwerken reicht ein relativer Pfad nicht.
+
+**Neue Seite anlegen:** immer als Paar (DE + EN), in beide Navigationen und
+Fußzeilen eintragen, in beiden Dateien die drei `hreflang`-Zeilen setzen und den
+Sprachumschalter auf das jeweilige Gegenstück zeigen lassen.
+
 ## Alle Daten an einer Stelle ändern
 
 Sämtliche Kontaktdaten, Links und Eckdaten stehen ausschließlich in
@@ -165,11 +226,13 @@ kein Aufruf an OpenStreetMap. Die Koordinaten stehen in `config.js` unter `map`.
 Im Quelltext sind alle offenen Stellen mit `TODO` markiert:
 
 1. **`noindex` entfernen.** Aktuell steht auf jeder Seite
-   `<meta name="robots" content="noindex">`. Diese Zeile in allen sieben
+   `<meta name="robots" content="noindex">`. Diese Zeile in allen 16
    HTML-Dateien löschen, wenn die Seite in Suchmaschinen erscheinen soll:
    ```
    sed -i '/content="noindex"/d; /noch nicht fuer Suchmaschinen/,+1d' *.html
+   sed -i '/content="noindex"/d; /not yet released to search engines/,+1d' en/*.html
    ```
+   Ebenfalls vorher: die Basis-URL der `hreflang`-Angaben setzen (siehe oben).
 2. **Bilder austauschen.** Die Dateien in `assets/img/` sind Platzhalter mit
    sprechenden Namen (`aussen.jpg`, `bar.jpg`, `fruehstueck.jpg`,
    `zimmer-einzel.jpg` …). Einfach durch echte Fotos gleichen Namens ersetzen,
@@ -209,8 +272,8 @@ Danach `http://localhost:8000/` im Browser öffnen. (Ein Doppelklick auf
 
 ```
 index.html, zimmer.html, lage.html, muenchen-events.html,
-kontakt.html, impressum.html, datenschutz.html
-anfrage.html             Gruppen-, Firmen- und Langzeitanfragen
+kontakt.html, anfrage.html, impressum.html, datenschutz.html
+en/                      englische Fassung derselben Seiten
 assets/css/style.css     Layout und Gestaltung (mobile first)
 assets/js/config.js      >> hier alle Daten pflegen <<
 assets/js/app.js         verteilt die Konfiguration auf die Seiten
@@ -231,3 +294,5 @@ assets/img/*.jpg         Platzhalterbilder
 * Die Galerie auf der Startseite hat eine Lightbox in Vanilla JS: bedienbar mit
   Maus, Tastatur (Esc, Pfeiltasten) und Klick auf den Hintergrund.
 * Akzentfarbe ist Dunkelgrün (`--akzent` in `style.css`), kein Orange.
+* Zweisprachig DE/EN über das `lang`-Attribut; keine Sprachweiterleitung und
+  kein Cookie – wer die Sprache wechselt, bleibt auf der gewählten Seite.

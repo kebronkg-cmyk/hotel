@@ -13,6 +13,13 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/img/og-bild.jpg">
 <meta name="theme-color" content="#123a5c">
+<!-- Sprachfassungen. TODO: Basis-URL anpassen, sobald die Domain feststeht
+     (Suchen und Ersetzen von "https://www.hotel-montree.de/" in allen HTML-Dateien). -->
+<link rel="alternate" hreflang="de" href="https://www.hotel-montree.de/kontakt.html">
+<link rel="alternate" hreflang="en" href="https://www.hotel-montree.de/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://www.hotel-montree.de/kontakt.html">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23123a5c'/><text x='16' y='23' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle'>M</text></svg>">
 </head>
@@ -23,6 +30,10 @@
   <div class="kopf-zeile">
     <a class="marke" href="index.html">Hotel Montree<span>Budgethotel &middot; M&uuml;nchen</span></a>
     <div class="kopf-aktionen">
+      <nav class="sprache" aria-label="Sprache / Language">
+        <span class="sprache-aktiv" aria-current="true">DE</span>
+        <a href="en/contact.html" hreflang="en" lang="en">EN</a>
+      </nav>
       <a class="kopf-tel" href="tel:+49895427190" data-cfg-href="phoneLink"><span data-cfg="phone">089-5427190</span></a>
       <a class="btn btn-haupt btn-klein" href="kontakt.html" data-cfg-href="booking">Direkt buchen</a>
     </div>

@@ -8,6 +8,114 @@
 
   var cfg = window.HOTEL_CONFIG || {};
 
+  /* --- Sprache ---------------------------------------------------------
+     Die Sprache steht im lang-Attribut des <html>-Elements. Deutsch ist die
+     Grundlage; für Englisch liegen die Übersetzungen in config.js unter
+     "translations.en" und überschreiben die deutschen Werte. */
+  var sprache = (document.documentElement.getAttribute('lang') || 'de')
+                  .toLowerCase().indexOf('en') === 0 ? 'en' : 'de';
+
+  var uebersetzung = (sprache === 'en' && cfg.translations && cfg.translations.en)
+                     ? cfg.translations.en : {};
+
+  /* Übersetzten Wert nehmen, sonst den deutschen aus der Konfiguration. */
+  function inhalt(schluessel) {
+    return uebersetzung[schluessel] !== undefined ? uebersetzung[schluessel] : cfg[schluessel];
+  }
+
+  /* Feste Oberflächentexte, die dieses Skript selbst erzeugt. */
+  var TEXTE = {
+    de: {
+      preisAnfrage: 'Preis auf Anfrage',
+      abProNacht: function (preis) { return 'ab <strong>' + preis + ' €</strong>/Nacht'; },
+      buchen: function (zimmer) { return zimmer + ' buchen'; },
+      bildAlt: function (zimmer) { return zimmer + ' im Hotel Montree'; },
+      ausstattung: {
+        wlan: 'Kostenfreies WLAN', bad: 'Dusche/WC im Zimmer', tv: 'TV',
+        schreibtisch: 'Schreibtisch', safe: 'Safe', fenster: 'Zum Innenhof gelegen'
+      },
+      note: 'Note', von: 'von', bewertungenBei: function (anzahl, quelle) {
+        return 'aus ' + anzahl + ' Bewertungen bei ' + quelle;
+      },
+      bewertungenLeer: 'aus [Anzahl] Bewertungen bei [Quelle]',
+      platzhalter: 'Platzhalter',
+      lbTitel: 'Bildansicht', lbSchliessen: 'Schließen',
+      lbZurueck: 'Vorheriges Bild', lbWeiter: 'Nächstes Bild',
+      karteTitel: function (haus) { return 'Karte mit der Lage des ' + haus; },
+      termineFehler: function (telefon) {
+        return 'Die Termine können gerade nicht geladen werden. Rufen Sie uns gern an: ' + telefon + '.';
+      },
+      anfrageFelder: {
+        art: 'Art der Anfrage', name: 'Name', firma: 'Firma/Organisation',
+        email: 'E-Mail', telefon: 'Telefon', personen: 'Personen',
+        von: 'Zeitraum von', bis: 'Zeitraum bis', zimmer: 'Zimmeranzahl',
+        nachricht: 'Nachricht'
+      },
+      anfrageBetreff: function (art, haus) { return 'Anfrage (' + art + ') – ' + haus; },
+      anfrageStandardArt: 'Gruppe/Firma',
+      wirdGesendet: 'Anfrage wird gesendet …',
+      gesendet: 'Vielen Dank! Ihre Anfrage ist bei uns eingegangen. Wir melden uns so schnell wie möglich.',
+      sendeFehler: function (email, telefon) {
+        return 'Das Senden hat leider nicht geklappt. Bitte schreiben Sie uns an '
+             + email + ' oder rufen Sie uns an: ' + telefon;
+      },
+      mailProgramm: function (email) {
+        return 'Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, schreiben Sie uns bitte an ' + email + '.';
+      },
+      kontaktFelder: {
+        name: 'Name', email: 'E-Mail', telefon: 'Telefon', anreise: 'Anreise',
+        abreise: 'Abreise', personen: 'Personen', zimmer: 'Zimmerwunsch'
+      },
+      kontaktBetreff: function (haus) { return 'Direktbuchungsanfrage ' + haus; },
+      kontaktNachricht: 'Nachricht:'
+    },
+    en: {
+      preisAnfrage: 'Price on request',
+      abProNacht: function (preis) { return 'from <strong>€' + preis + '</strong>/night'; },
+      buchen: function (zimmer) { return 'Book ' + zimmer.toLowerCase(); },
+      bildAlt: function (zimmer) { return zimmer + ' at the Hotel Montree'; },
+      ausstattung: {
+        wlan: 'Free Wi-Fi', bad: 'Private shower and WC', tv: 'TV',
+        schreibtisch: 'Desk', safe: 'Safe', fenster: 'Facing the courtyard'
+      },
+      note: 'Rating', von: 'out of', bewertungenBei: function (anzahl, quelle) {
+        return 'based on ' + anzahl + ' reviews on ' + quelle;
+      },
+      bewertungenLeer: 'based on [number] reviews on [source]',
+      platzhalter: 'Placeholder',
+      lbTitel: 'Image viewer', lbSchliessen: 'Close',
+      lbZurueck: 'Previous image', lbWeiter: 'Next image',
+      karteTitel: function (haus) { return 'Map showing the location of ' + haus; },
+      termineFehler: function (telefon) {
+        return 'The dates cannot be loaded right now. Feel free to call us: ' + telefon + '.';
+      },
+      anfrageFelder: {
+        art: 'Type of enquiry', name: 'Name', firma: 'Company/organisation',
+        email: 'Email', telefon: 'Phone', personen: 'Guests',
+        von: 'From', bis: 'To', zimmer: 'Number of rooms',
+        nachricht: 'Message'
+      },
+      anfrageBetreff: function (art, haus) { return 'Enquiry (' + art + ') – ' + haus; },
+      anfrageStandardArt: 'group/company',
+      wirdGesendet: 'Sending your enquiry …',
+      gesendet: 'Thank you! We have received your enquiry and will get back to you as soon as we can.',
+      sendeFehler: function (email, telefon) {
+        return 'Sorry, sending failed. Please email us at ' + email + ' or give us a call: ' + telefon;
+      },
+      mailProgramm: function (email) {
+        return 'Your email programme should be opening now. If it does not, please write to ' + email + '.';
+      },
+      kontaktFelder: {
+        name: 'Name', email: 'Email', telefon: 'Phone', anreise: 'Arrival',
+        abreise: 'Departure', personen: 'Guests', zimmer: 'Preferred room'
+      },
+      kontaktBetreff: function (haus) { return 'Direct booking enquiry ' + haus; },
+      kontaktNachricht: 'Message:'
+    }
+  };
+
+  var T = TEXTE[sprache];
+
   /* Wert aus der Konfiguration ueber einen Pfad holen: "legal.company" */
   function value(path) {
     return path.split('.').reduce(function (obj, key) {
@@ -42,7 +150,7 @@
   /* daten = { arrival: '2026-10-01', departure: '2026-10-03', adults: '2' } */
   function bookingHref(daten) {
     if (!bookingKonfiguriert()) {
-      return cfg.bookingFallback || 'kontakt.html';
+      return inhalt('bookingFallback') || 'kontakt.html';
     }
 
     var url = cfg.bookingUrl;
@@ -96,7 +204,7 @@
   /* --- Preise -------------------------------------------------------- */
   document.querySelectorAll('[data-price]').forEach(function (el) {
     var price = value('prices.' + el.getAttribute('data-price'));
-    el.textContent = price ? price : 'Preis auf Anfrage';
+    el.textContent = price ? price : T.preisAnfrage;
   });
 
   /* --- Adresse am Stueck --------------------------------------------- */
@@ -113,9 +221,10 @@
   /* --- Direktbuchungs-Vorteile ---------------------------------------
      Inhalte stehen in config.js unter "directBenefits". */
   var vorteileZiel = document.querySelector('[data-benefits]');
-  if (vorteileZiel && Array.isArray(cfg.directBenefits) && cfg.directBenefits.length) {
+  var vorteileListe = inhalt('directBenefits');
+  if (vorteileZiel && Array.isArray(vorteileListe) && vorteileListe.length) {
     vorteileZiel.innerHTML = '';
-    cfg.directBenefits.forEach(function (v) {
+    vorteileListe.forEach(function (v) {
       var li = document.createElement('li');
       var stark = document.createElement('strong');
       stark.textContent = v.title || '';
@@ -176,9 +285,10 @@
 
   /* --- Block "Direkt bei uns buchen lohnt sich" ------------------------ */
   var gruendeZiel = document.querySelector('[data-reasons]');
-  if (gruendeZiel && Array.isArray(cfg.bookingReasons) && cfg.bookingReasons.length) {
+  var gruendeListe = inhalt('bookingReasons');
+  if (gruendeZiel && Array.isArray(gruendeListe) && gruendeListe.length) {
     gruendeZiel.innerHTML = '';
-    cfg.bookingReasons.forEach(function (g) {
+    gruendeListe.forEach(function (g) {
       var li = document.createElement('li');
       var stark = document.createElement('strong');
       stark.textContent = g.title || '';
@@ -212,19 +322,14 @@
         daten[f.name] = f.value;
       });
 
-      var beschriftung = {
-        art: 'Art der Anfrage', name: 'Name', firma: 'Firma/Organisation',
-        email: 'E-Mail', telefon: 'Telefon', personen: 'Personen',
-        von: 'Zeitraum von', bis: 'Zeitraum bis', zimmer: 'Zimmeranzahl',
-        nachricht: 'Nachricht'
-      };
+      var beschriftung = T.anfrageFelder;
 
       var endpunkt = cfg.formEndpoint || '';
 
       if (endpunkt) {
         var knopf = anfrage.querySelector('button[type="submit"]');
         if (knopf) { knopf.disabled = true; }
-        zeigen('Anfrage wird gesendet …', false);
+        zeigen(T.wirdGesendet, false);
 
         fetch(endpunkt, {
           method: 'POST',
@@ -233,11 +338,9 @@
         }).then(function (antwort) {
           if (!antwort.ok) { throw new Error('Status ' + antwort.status); }
           anfrage.reset();
-          zeigen('Vielen Dank! Ihre Anfrage ist bei uns eingegangen. '
-               + 'Wir melden uns so schnell wie möglich.', true);
+          zeigen(T.gesendet, true);
         })['catch'](function () {
-          zeigen('Das Senden hat leider nicht geklappt. Bitte schreiben Sie uns an '
-               + (cfg.email || '') + ' oder rufen Sie uns an: ' + (cfg.phone || ''), false);
+          zeigen(T.sendeFehler(cfg.email || '', cfg.phone || ''), false);
         })['finally'](function () {
           if (knopf) { knopf.disabled = false; }
         });
@@ -248,25 +351,24 @@
         return beschriftung[k] + ': ' + (daten[k] || '');
       });
 
-      var betreff = 'Anfrage (' + (daten.art || 'Gruppe/Firma') + ') – ' + (cfg.name || '');
+      var betreff = T.anfrageBetreff(daten.art || T.anfrageStandardArt, cfg.name || '');
       window.location.href = 'mailto:' + (cfg.email || '')
         + '?subject=' + encodeURIComponent(betreff)
         + '&body=' + encodeURIComponent(zeilen.join('\n'));
 
-      zeigen('Ihr E-Mail-Programm sollte sich jetzt öffnen. Falls nicht, schreiben Sie '
-           + 'uns bitte an ' + (cfg.email || '') + '.', false);
+      zeigen(T.mailProgramm(cfg.email || ''), false);
     });
   }
 
   /* --- Zimmerkarten ----------------------------------------------------
      Die Zimmer stehen als Array in config.js unter "rooms". */
   var AUSSTATTUNG = {
-    wlan:         { icon: 'ic-wlan',         label: 'Kostenfreies WLAN' },
-    bad:          { icon: 'ic-bad',          label: 'Dusche/WC im Zimmer' },
-    tv:           { icon: 'ic-tv',           label: 'TV' },
-    schreibtisch: { icon: 'ic-schreibtisch', label: 'Schreibtisch' },
-    safe:         { icon: 'ic-safe',         label: 'Safe' },
-    fenster:      { icon: 'ic-fenster',      label: 'Zum Innenhof gelegen' }
+    wlan:         { icon: 'ic-wlan',         label: T.ausstattung.wlan },
+    bad:          { icon: 'ic-bad',          label: T.ausstattung.bad },
+    tv:           { icon: 'ic-tv',           label: T.ausstattung.tv },
+    schreibtisch: { icon: 'ic-schreibtisch', label: T.ausstattung.schreibtisch },
+    safe:         { icon: 'ic-safe',         label: T.ausstattung.safe },
+    fenster:      { icon: 'ic-fenster',      label: T.ausstattung.fenster }
   };
 
   function svgIcon(name) {
@@ -275,11 +377,14 @@
   }
 
   var zimmerZiel = document.querySelector('[data-rooms]');
-  if (zimmerZiel && Array.isArray(cfg.rooms) && cfg.rooms.length) {
-    zimmerZiel.innerHTML = cfg.rooms.map(function (z) {
+  /* Aus dem Unterordner /en/ liegen die Bilder eine Ebene höher. */
+  var bildBasis = (zimmerZiel && zimmerZiel.getAttribute('data-image-base')) || 'assets/img/';
+  var zimmerListe = inhalt('rooms');
+  if (zimmerZiel && Array.isArray(zimmerListe) && zimmerListe.length) {
+    zimmerZiel.innerHTML = zimmerListe.map(function (z) {
       var preis = z.price
-        ? 'ab <strong>' + z.price + ' €</strong>/Nacht'
-        : '<strong>Preis auf Anfrage</strong>';
+        ? T.abProNacht(z.price)
+        : '<strong>' + T.preisAnfrage + '</strong>';
 
       var merkmale = (z.features || []).map(function (f) {
         var a = AUSSTATTUNG[f];
@@ -291,7 +396,7 @@
       var neuerTab = bookingKonfiguriert() ? ' target="_blank" rel="noopener"' : '';
 
       return '<article class="karte">'
-           + '<img src="assets/img/' + z.image + '" alt="' + z.name + ' im Hotel Montree"'
+           + '<img src="' + bildBasis + z.image + '" alt="' + T.bildAlt(z.name) + '"'
            + ' width="1600" height="1067" loading="lazy">'
            + '<div class="karte-inhalt">'
            + '<h3>' + z.name + '</h3>'
@@ -300,7 +405,7 @@
            + '<p>' + (z.text || '') + '</p>'
            + '<ul class="ausstattung">' + merkmale + '</ul>'
            + '<a class="btn btn-haupt" href="' + buchenZiel + '"' + neuerTab + '>'
-           + z.name + ' buchen</a>'
+           + T.buchen(z.name) + '</a>'
            + '</div></article>';
     }).join('');
   }
@@ -308,8 +413,9 @@
   /* --- Fakten-Leiste --------------------------------------------------
      Werte stehen in config.js unter "facts". */
   var faktenZiel = document.querySelector('[data-facts]');
-  if (faktenZiel && Array.isArray(cfg.facts) && cfg.facts.length) {
-    faktenZiel.innerHTML = cfg.facts.map(function (f) {
+  var faktenListe = inhalt('facts');
+  if (faktenZiel && Array.isArray(faktenListe) && faktenListe.length) {
+    faktenZiel.innerHTML = faktenListe.map(function (f) {
       return '<li><span class="fakt-wert">' + (f.value || '') + '</span>'
            + '<span class="fakt-text">' + (f.label || '') + '</span></li>';
     }).join('');
@@ -318,25 +424,25 @@
   /* --- Bewertungen -----------------------------------------------------
      Solange in config.js keine echten Werte stehen, wird der Block
      sichtbar als Platzhalter gekennzeichnet. */
-  var bewertungen = cfg.reviews || {};
+  var bewertungen = inhalt('reviews') || {};
 
   var noteZiel = document.querySelector('[data-review-score]');
   if (noteZiel) {
     if (bewertungen.score) {
       noteZiel.innerHTML = '<span class="note-zahl">' + bewertungen.score + '</span>'
-        + '<span class="note-skala">von ' + (bewertungen.scoreMax || '5') + '</span>';
+        + '<span class="note-skala">' + T.von + ' ' + (bewertungen.scoreMax || '5') + '</span>';
     } else {
-      noteZiel.innerHTML = '<span class="note-zahl">[Note]</span>'
-        + '<span class="note-skala">von ' + (bewertungen.scoreMax || '5') + '</span>';
+      noteZiel.innerHTML = '<span class="note-zahl">[' + T.note + ']</span>'
+        + '<span class="note-skala">' + T.von + ' ' + (bewertungen.scoreMax || '5') + '</span>';
     }
   }
 
   var quelleZiel = document.querySelector('[data-review-source]');
   if (quelleZiel) {
     if (bewertungen.count && bewertungen.source) {
-      quelleZiel.textContent = 'aus ' + bewertungen.count + ' Bewertungen bei ' + bewertungen.source;
+      quelleZiel.textContent = T.bewertungenBei(bewertungen.count, bewertungen.source);
     } else {
-      quelleZiel.textContent = 'aus [Anzahl] Bewertungen bei [Quelle]';
+      quelleZiel.textContent = T.bewertungenLeer;
     }
   }
 
@@ -352,7 +458,7 @@
       var text = z.text || '';
       var istPlatzhalter = text.indexOf('[') === 0;
       return '<figure class="zitat">'
-           + (istPlatzhalter ? '<span class="badge badge-platzhalter">Platzhalter</span>' : '')
+           + (istPlatzhalter ? '<span class="badge badge-platzhalter">' + T.platzhalter + '</span>' : '')
            + '<blockquote>' + text + '</blockquote>'
            + '<figcaption>' + (z.author || '') + '</figcaption>'
            + '</figure>';
@@ -374,15 +480,15 @@
       box.className = 'lightbox';
       box.setAttribute('role', 'dialog');
       box.setAttribute('aria-modal', 'true');
-      box.setAttribute('aria-label', 'Bildansicht');
+      box.setAttribute('aria-label', T.lbTitel);
       box.innerHTML =
-          '<button type="button" class="lb-knopf lb-schliessen" aria-label="Schließen">&times;</button>'
-        + '<button type="button" class="lb-knopf lb-zurueck" aria-label="Vorheriges Bild">&lsaquo;</button>'
+          '<button type="button" class="lb-knopf lb-schliessen" aria-label="' + T.lbSchliessen + '">&times;</button>'
+        + '<button type="button" class="lb-knopf lb-zurueck" aria-label="' + T.lbZurueck + '">&lsaquo;</button>'
         + '<figure class="lb-figur">'
         + '<img alt="">'
         + '<figcaption class="lb-text"></figcaption>'
         + '</figure>'
-        + '<button type="button" class="lb-knopf lb-weiter" aria-label="Nächstes Bild">&rsaquo;</button>';
+        + '<button type="button" class="lb-knopf lb-weiter" aria-label="' + T.lbWeiter + '">&rsaquo;</button>';
       document.body.appendChild(box);
 
       box.querySelector('.lb-schliessen').addEventListener('click', schliessen);
@@ -462,7 +568,7 @@
 
       var rahmen = document.createElement('iframe');
       rahmen.className = 'karte-rahmen';
-      rahmen.title = 'Karte mit der Lage des ' + (cfg.name || 'Hotels');
+      rahmen.title = T.karteTitel(cfg.name || 'Hotel Montree');
       rahmen.loading = 'lazy';
       rahmen.referrerPolicy = 'no-referrer';
       rahmen.src = 'https://www.openstreetmap.org/export/embed.html?bbox='
@@ -479,7 +585,17 @@
      Eingriff ins HTML aktualisiert werden können. */
   var terminZiele = document.querySelectorAll('[data-events]');
   if (terminZiele.length) {
-    fetch('assets/data/events.json')
+    /* Zweisprachige Felder: { "de": "…", "en": "…" } oder einfacher Text. */
+    var sprachwert = function (wert) {
+      if (wert && typeof wert === 'object') { return wert[sprache] || wert.de || ''; }
+      return wert || '';
+    };
+
+    /* Aus dem Unterordner /en/ liegt die Datei eine Ebene höher. */
+    var quelle = document.querySelector('[data-events-src]');
+    var pfad = quelle ? quelle.getAttribute('data-events-src') : 'assets/data/events.json';
+
+    fetch(pfad)
       .then(function (a) {
         if (!a.ok) { throw new Error('Status ' + a.status); }
         return a.json();
@@ -491,17 +607,18 @@
 
           ziel.innerHTML = '<table class="daten"><tbody>'
             + (kat.termine || []).map(function (t) {
-                return '<tr><th>' + (t.name || '') + '</th><td>'
+                var name = sprachwert(t.name);
+                var hinweis = sprachwert(t.hinweis);
+                return '<tr><th>' + name + '</th><td>'
                      + '<strong>' + (t.zeitraum || '') + '</strong>'
-                     + (t.hinweis ? '<br><span class="hinweis">' + t.hinweis + '</span>' : '')
+                     + (hinweis ? '<br><span class="hinweis">' + hinweis + '</span>' : '')
                      + '</td></tr>';
               }).join('')
             + '</tbody></table>';
         });
       })['catch'](function () {
         terminZiele.forEach(function (ziel) {
-          ziel.innerHTML = '<p class="hinweis">Die Termine k&ouml;nnen gerade nicht geladen '
-            + 'werden. Rufen Sie uns gern an: ' + (cfg.phone || '') + '.</p>';
+          ziel.innerHTML = '<p class="hinweis">' + T.termineFehler(cfg.phone || '') + '</p>';
         });
       });
   }
@@ -519,20 +636,21 @@
         return f && f.value ? f.value.trim() : '';
       };
 
+      var kf = T.kontaktFelder;
       var lines = [
-        'Name: ' + get('name'),
-        'E-Mail: ' + get('email'),
-        'Telefon: ' + get('telefon'),
-        'Anreise: ' + get('anreise'),
-        'Abreise: ' + get('abreise'),
-        'Personen: ' + get('personen'),
-        'Zimmerwunsch: ' + get('zimmer'),
+        kf.name + ': ' + get('name'),
+        kf.email + ': ' + get('email'),
+        kf.telefon + ': ' + get('telefon'),
+        kf.anreise + ': ' + get('anreise'),
+        kf.abreise + ': ' + get('abreise'),
+        kf.personen + ': ' + get('personen'),
+        kf.zimmer + ': ' + get('zimmer'),
         '',
-        'Nachricht:',
+        T.kontaktNachricht,
         get('nachricht')
       ];
 
-      var subject = 'Direktbuchungsanfrage ' + (cfg.name || '');
+      var subject = T.kontaktBetreff(cfg.name || '');
       var href = 'mailto:' + (cfg.email || '') +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(lines.join('\n'));
