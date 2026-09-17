@@ -445,6 +445,67 @@
     });
   }
 
+  /* --- Karte: Zwei-Klick-Lösung ----------------------------------------
+     Die Karte von OpenStreetMap wird erst geladen, wenn die Besucherin
+     oder der Besucher darauf klickt. Vorher verlässt kein Aufruf die Seite. */
+  var kartenKnopf = document.querySelector('[data-map-load]');
+  if (kartenKnopf) {
+    kartenKnopf.addEventListener('click', function () {
+      var halter = document.querySelector('[data-map]');
+      if (!halter) { return; }
+
+      var k = cfg.map || {};
+      var lat = Number(k.lat) || 48.1493;
+      var lon = Number(k.lon) || 11.5545;
+      var r = Number(k.radius) || 0.004;
+      var bbox = [lon - r * 1.6, lat - r, lon + r * 1.6, lat + r].join(',');
+
+      var rahmen = document.createElement('iframe');
+      rahmen.className = 'karte-rahmen';
+      rahmen.title = 'Karte mit der Lage des ' + (cfg.name || 'Hotels');
+      rahmen.loading = 'lazy';
+      rahmen.referrerPolicy = 'no-referrer';
+      rahmen.src = 'https://www.openstreetmap.org/export/embed.html?bbox='
+                 + encodeURIComponent(bbox) + '&layer=mapnik&marker='
+                 + encodeURIComponent(lat + ',' + lon);
+
+      halter.innerHTML = '';
+      halter.appendChild(rahmen);
+    });
+  }
+
+  /* --- Veranstaltungstermine ------------------------------------------
+     Die Termine stehen in assets/data/events.json, damit sie ohne
+     Eingriff ins HTML aktualisiert werden können. */
+  var terminZiele = document.querySelectorAll('[data-events]');
+  if (terminZiele.length) {
+    fetch('assets/data/events.json')
+      .then(function (a) {
+        if (!a.ok) { throw new Error('Status ' + a.status); }
+        return a.json();
+      })
+      .then(function (daten) {
+        (daten.kategorien || []).forEach(function (kat) {
+          var ziel = document.querySelector('[data-events="' + kat.id + '"]');
+          if (!ziel) { return; }
+
+          ziel.innerHTML = '<table class="daten"><tbody>'
+            + (kat.termine || []).map(function (t) {
+                return '<tr><th>' + (t.name || '') + '</th><td>'
+                     + '<strong>' + (t.zeitraum || '') + '</strong>'
+                     + (t.hinweis ? '<br><span class="hinweis">' + t.hinweis + '</span>' : '')
+                     + '</td></tr>';
+              }).join('')
+            + '</tbody></table>';
+        });
+      })['catch'](function () {
+        terminZiele.forEach(function (ziel) {
+          ziel.innerHTML = '<p class="hinweis">Die Termine k&ouml;nnen gerade nicht geladen '
+            + 'werden. Rufen Sie uns gern an: ' + (cfg.phone || '') + '.</p>';
+        });
+      });
+  }
+
   /* --- Kontaktformular ----------------------------------------------- */
   /* Kein Server, kein Tracking: das Formular oeffnet das E-Mail-Programm
      mit vorbereitetem Text. */

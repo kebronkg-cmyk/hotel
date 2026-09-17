@@ -80,7 +80,18 @@ window.HOTEL_CONFIG = {
   city: 'München',
   country: 'Deutschland',
 
-  /* --- Karten-Links (keine eingebetteten Karten, kein Tracking) ------- */
+  /* --- Karte -----------------------------------------------------------
+     Die Karte auf lage.html wird erst nach einem Klick geladen
+     (Zwei-Klick-Lösung), damit ohne Zustimmung nichts an OpenStreetMap
+     übertragen wird.
+     TODO: Koordinaten bei Bedarf genauer setzen. */
+  map: {
+    lat: 48.1493,
+    lon: 11.5545,
+    radius: 0.004      // Größe des Kartenausschnitts
+  },
+
+  /* --- Karten-Links ---------------------------------------------------- */
   mapUrl: 'https://www.openstreetmap.org/search?query=Dachauer%20Stra%C3%9Fe%2091%2C%2080335%20M%C3%BCnchen',
   directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Dachauer+Stra%C3%9Fe+91%2C+80335+M%C3%BCnchen',
 

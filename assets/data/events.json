@@ -1,0 +1,32 @@
+{
+  "hinweis": "TODO: Zeitraeume jaehrlich aktualisieren. Bewusst ohne festes Jahr - bitte die Platzhalter durch die vom Veranstalter veroeffentlichten Termine ersetzen.",
+  "kategorien": [
+    {
+      "id": "oktoberfest",
+      "titel": "Oktoberfest",
+      "termine": [
+        { "name": "Oktoberfest auf der Theresienwiese", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "16 bis 18 Tage, Ende traditionell am ersten Oktoberwochenende" },
+        { "name": "Trachten- und Schützenzug", "zeitraum": "[TT.MM.JJJJ]", "hinweis": "am ersten Wiesn-Sonntag" },
+        { "name": "Frühlingsfest (kleine Wiesn)", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "im April/Mai auf derselben Festwiese" }
+      ]
+    },
+    {
+      "id": "messe",
+      "titel": "Messe München",
+      "termine": [
+        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "Messegelände Riem" },
+        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "Messegelände Riem" },
+        { "name": "[Messename eintragen]", "zeitraum": "[TT.MM. – TT.MM.JJJJ]", "hinweis": "MOC oder Zenith, je nach Veranstaltung" }
+      ]
+    },
+    {
+      "id": "fussball",
+      "titel": "Fußball in der Allianz Arena",
+      "termine": [
+        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" },
+        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" },
+        { "name": "[Heimspiel eintragen]", "zeitraum": "[TT.MM.JJJJ, Anstoß HH:MM]", "hinweis": "Allianz Arena, Fröttmaning" }
+      ]
+    }
+  ]
+}

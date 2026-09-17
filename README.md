@@ -13,8 +13,8 @@ Ziel der Seite: **möglichst viele Direktbuchungen** statt Buchungen über Porta
 |---|---|
 | `index.html` | Startseite: Direktbuchungsvorteile, Zimmerübersicht, Lage, FAQ |
 | `zimmer.html` | Zimmertypen, Ausstattung, Preise |
-| `lage.html` | Lage, Entfernungen, Anfahrt, Parken |
-| `muenchen-events.html` | Veranstaltungsjahr in München, wann früh gebucht werden sollte |
+| `lage.html` | Karte (erst auf Klick), Wegbeschreibungen, Entfernungen, Parken |
+| `muenchen-events.html` | Oktoberfest, Messe München, Fußball – mit Terminen aus `events.json` |
 | `kontakt.html` | Kontaktdaten und Anfrageformular |
 | `anfrage.html` | Anfrage für Gruppen, Firmen und Langzeitaufenthalte |
 | `impressum.html` | Impressum |
@@ -136,6 +136,30 @@ neuen Tab).
 Sobald dort z. B. `einzel: 'ab 69 €'` eingetragen wird, steht das auf allen
 Seiten.
 
+## Termine pflegen (`assets/data/events.json`)
+
+Die Termine auf `muenchen-events.html` stehen bewusst nicht im HTML, sondern in
+`assets/data/events.json` – ohne festes Jahr, damit nichts veraltet im Quelltext
+stehen bleibt:
+
+```json
+{ "id": "oktoberfest", "titel": "Oktoberfest",
+  "termine": [
+    { "name": "Oktoberfest auf der Theresienwiese",
+      "zeitraum": "[TT.MM. – TT.MM.JJJJ]",
+      "hinweis": "16 bis 18 Tage, Ende am ersten Oktoberwochenende" }
+  ] }
+```
+
+Die `id` muss zum `data-events="…"` im HTML passen (`oktoberfest`, `messe`,
+`fussball`). Lässt sich die Datei nicht laden, zeigt die Seite stattdessen einen
+Hinweis mit der Telefonnummer.
+
+## Karte auf `lage.html`
+
+Die Karte wird erst nach einem Klick geladen (Zwei-Klick-Lösung). Vorher geht
+kein Aufruf an OpenStreetMap. Die Koordinaten stehen in `config.js` unter `map`.
+
 ## Offene Punkte vor dem Live-Gang
 
 Im Quelltext sind alle offenen Stellen mit `TODO` markiert:
@@ -153,11 +177,15 @@ Im Quelltext sind alle offenen Stellen mit `TODO` markiert:
    Seitenverhältnis 3:2, als JPEG.
 3. **Impressum vervollständigen.** Betreibergesellschaft, vertretungsberechtigte
    Person, Registereintrag und USt-IdNr. in `config.js` unter `legal` eintragen.
-4. **Datenschutzerklärung prüfen.** Hoster (z. B. GitHub Pages) und Anbieter der
-   Buchungsmaschine namentlich eintragen und den Text rechtlich prüfen lassen.
-5. **Inhalte bestätigen.** Preise, Check-in-Zeiten, Storno- und Parkhinweise
-   sowie die Entfernungsangaben vom Haus gegenprüfen lassen.
-6. **Bildnachweis** im Impressum ergänzen, sobald echte Fotos verwendet werden.
+4. **Datenschutzerklärung prüfen.** Hoster (z. B. GitHub Pages), Anbieter der
+   Buchungsmaschine und – falls genutzt – den Formular-Dienst namentlich
+   eintragen und den Text rechtlich prüfen lassen.
+5. **Inhalte bestätigen.** Preise, Check-in-Zeiten, Storno-, Haustier-,
+   Zahlungs- und Parkhinweise sowie alle Entfernungs- und Fahrzeitangaben vom
+   Haus gegenprüfen lassen.
+6. **Termine eintragen** in `assets/data/events.json`.
+7. **Bewertungen** erst eintragen, wenn echte vorliegen (siehe oben).
+8. **Bildnachweis** im Impressum ergänzen, sobald echte Fotos verwendet werden.
 
 ## Veröffentlichen über GitHub Pages
 
@@ -182,9 +210,11 @@ Danach `http://localhost:8000/` im Browser öffnen. (Ein Doppelklick auf
 ```
 index.html, zimmer.html, lage.html, muenchen-events.html,
 kontakt.html, impressum.html, datenschutz.html
+anfrage.html             Gruppen-, Firmen- und Langzeitanfragen
 assets/css/style.css     Layout und Gestaltung (mobile first)
 assets/js/config.js      >> hier alle Daten pflegen <<
 assets/js/app.js         verteilt die Konfiguration auf die Seiten
+assets/data/events.json  Veranstaltungstermine
 assets/img/*.jpg         Platzhalterbilder
 .nojekyll                für GitHub Pages
 ```
@@ -197,4 +227,7 @@ assets/img/*.jpg         Platzhalterbilder
   „Direkt buchen“ am unteren Bildschirmrand.
 * Das Kontaktformular sendet nichts an einen Server, sondern öffnet das
   E-Mail-Programm des Gastes mit vorbereitetem Text.
-* Kartendienste werden nicht eingebettet, sondern nur verlinkt.
+* Die Karte auf `lage.html` lädt erst nach Klick (Zwei-Klick-Lösung).
+* Die Galerie auf der Startseite hat eine Lightbox in Vanilla JS: bedienbar mit
+  Maus, Tastatur (Esc, Pfeiltasten) und Klick auf den Hintergrund.
+* Akzentfarbe ist Dunkelgrün (`--akzent` in `style.css`), kein Orange.

@@ -283,6 +283,35 @@ details.faq p { margin: 0 0 1rem; }
 .vorteile-3 li strong { color: var(--text); font-size: 1rem; }
 
 
+
+/* --- Karte (Zwei-Klick-Loesung) --------------------------------------- */
+.karte-halter {
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--flaeche);
+}
+.karte-platzhalter { position: relative; min-height: 16rem; display: grid; }
+.karte-platzhalter img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(.35) brightness(.5);
+}
+.karte-text {
+  position: relative;
+  align-self: center;
+  padding: 1.5rem 1rem;
+  color: #fff;
+  text-align: center;
+}
+.karte-text p { margin: 0 0 .5rem; font-size: .92rem; }
+.karte-text a { color: #fff; }
+.karte-text .hinweis { color: #e4ebf1; }
+.karte-rahmen { display: block; width: 100%; height: 22rem; border: 0; }
+
 /* --- Fakten-Leiste ---------------------------------------------------- */
 .fakten {
   list-style: none;
