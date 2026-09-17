@@ -1,11 +1,18 @@
 # Veröffentlicht die Website auf GitHub Pages.
-# "enablement: true" schaltet Pages beim ersten Lauf selbst ein.
+#
+# Voraussetzung (einmalig, nur der Repo-Eigentümer kann das):
+#   Settings -> Pages -> Source: "GitHub Actions"
+# Der Actions-Token darf Pages nicht selbst erstmalig einschalten.
+#
+# Danach läuft dieser Workflow bei jedem Push auf den Branch und lässt
+# sich zusätzlich von Hand starten (Actions -> Website veroeffentlichen
+# -> Run workflow).
+#
+# Wer stattdessen unter Settings -> Pages "Deploy from a branch" wählt,
+# braucht diesen Workflow nicht - dann kann die Datei gelöscht werden.
 name: Website veroeffentlichen
 
 on:
-  push:
-    branches:
-      - claude/hotel-montree-website-52xw91
   workflow_dispatch:
 
 permissions:
@@ -29,8 +36,6 @@ jobs:
 
       - name: GitHub Pages einrichten
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Dateien hochladen
         uses: actions/upload-pages-artifact@v3
