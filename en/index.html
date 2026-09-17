@@ -67,19 +67,19 @@
     <!-- Booking form: arrival and departure are passed to the booking URL as
          parameters. The parameter names live in assets/js/config.js under
          "bookingParams". -->
-    <form class="buchen" data-booking-form>
+    <form class="buchen" action="contact.html" method="get" data-booking-form>
       <div class="buchen-felder">
         <div class="feld">
           <label for="anreise">Arrival</label>
-          <input type="date" id="anreise" name="arrival">
+          <input type="date" id="anreise" name="anreise">
         </div>
         <div class="feld">
           <label for="abreise">Departure</label>
-          <input type="date" id="abreise" name="departure">
+          <input type="date" id="abreise" name="abreise">
         </div>
         <div class="feld">
           <label for="personen">Guests</label>
-          <select id="personen" name="adults">
+          <select id="personen" name="personen">
             <option value="1">1</option>
             <option value="2" selected>2</option>
             <option value="3">3</option>
@@ -100,8 +100,7 @@
       </p>
 
       <p class="hinweis" data-booking-note hidden>
-        Online booking is not switched on yet. We are taking you to the contact
-        page &ndash; or simply give us a call.
+        One moment &ndash; we are carrying your details over to the enquiry form.
       </p>
       <p class="hinweis">
         No middleman, no booking fee. Questions?

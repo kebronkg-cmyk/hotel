@@ -68,19 +68,19 @@
     <!-- Buchungsformular: Anreise/Abreise werden als Parameter an die
          Buchungs-URL angeh&auml;ngt. Die Parameternamen stehen in
          assets/js/config.js unter "bookingParams". -->
-    <form class="buchen" data-booking-form>
+    <form class="buchen" action="kontakt.html" method="get" data-booking-form>
       <div class="buchen-felder">
         <div class="feld">
           <label for="anreise">Anreise</label>
-          <input type="date" id="anreise" name="arrival">
+          <input type="date" id="anreise" name="anreise">
         </div>
         <div class="feld">
           <label for="abreise">Abreise</label>
-          <input type="date" id="abreise" name="departure">
+          <input type="date" id="abreise" name="abreise">
         </div>
         <div class="feld">
           <label for="personen">Personen</label>
-          <select id="personen" name="adults">
+          <select id="personen" name="personen">
             <option value="1">1</option>
             <option value="2" selected>2</option>
             <option value="3">3</option>
@@ -101,8 +101,7 @@
       </p>
 
       <p class="hinweis" data-booking-note hidden>
-        Die Online-Buchung ist noch nicht freigeschaltet. Wir leiten Sie zur
-        Kontaktseite weiter &ndash; oder rufen Sie uns einfach an.
+        Einen Moment &ndash; wir &uuml;bernehmen Ihre Angaben in das Anfrageformular.
       </p>
       <p class="hinweis">
         Kein Zwischenh&auml;ndler, keine Buchungsgeb&uuml;hr. Fragen?

@@ -67,7 +67,14 @@
         abreise: 'Abreise', personen: 'Personen', zimmer: 'Zimmerwunsch'
       },
       kontaktBetreff: function (haus) { return 'Direktbuchungsanfrage ' + haus; },
-      kontaktNachricht: 'Nachricht:'
+      kontaktNachricht: 'Nachricht:',
+      uebernommen: function (zeitraum, personen) {
+        return 'Ihre Angaben sind übernommen: ' + zeitraum
+             + (personen ? ', ' + personen + (personen === '1' ? ' Person' : ' Personen') : '')
+             + '. Bitte nur noch Name und Kontakt ergänzen – wir prüfen die '
+             + 'Verfügbarkeit und antworten persönlich.';
+      },
+      bis: 'bis'
     },
     en: {
       preisAnfrage: 'Price on request',
@@ -110,7 +117,14 @@
         abreise: 'Departure', personen: 'Guests', zimmer: 'Preferred room'
       },
       kontaktBetreff: function (haus) { return 'Direct booking enquiry ' + haus; },
-      kontaktNachricht: 'Message:'
+      kontaktNachricht: 'Message:',
+      uebernommen: function (zeitraum, personen) {
+        return 'We have taken over your details: ' + zeitraum
+             + (personen ? ', ' + personen + (personen === '1' ? ' guest' : ' guests') : '')
+             + '. Just add your name and contact details – we will check '
+             + 'availability and reply personally.';
+      },
+      bis: 'to'
     }
   };
 
@@ -173,6 +187,19 @@
 
   function externeBuchung() {
     return bookingKonfiguriert();
+  }
+
+  /* Ziel fuer den Anfrageweg, wenn keine Buchungsmaschine hinterlegt ist.
+     Die Eingaben des Gastes werden als Parameter mitgegeben und auf der
+     Kontaktseite wieder in das Formular eingesetzt. */
+  function anfrageZiel(daten) {
+    var ziel = inhalt('bookingFallback') || 'kontakt.html';
+    var teile = [];
+    if (daten.arrival)   { teile.push('anreise=' + encodeURIComponent(daten.arrival)); }
+    if (daten.departure) { teile.push('abreise=' + encodeURIComponent(daten.departure)); }
+    if (daten.adults)    { teile.push('personen=' + encodeURIComponent(daten.adults)); }
+    if (daten.roomType)  { teile.push('zimmer=' + encodeURIComponent(daten.roomType)); }
+    return ziel + (teile.length ? '?' + teile.join('&') : '');
   }
 
   /* --- Texte --------------------------------------------------------- */
@@ -241,8 +268,8 @@
 
     /* Kein Datum in der Vergangenheit anbieten */
     var heute = new Date().toISOString().slice(0, 10);
-    var an = bf.elements.arrival;
-    var ab = bf.elements.departure;
+    var an = bf.elements.anreise;
+    var ab = bf.elements.abreise;
     if (an) { an.min = heute; }
     if (ab) { ab.min = heute; }
 
@@ -259,16 +286,17 @@
       var daten = {
         arrival: an ? an.value : '',
         departure: ab ? ab.value : '',
-        adults: bf.elements.adults ? bf.elements.adults.value : ''
+        adults: bf.elements.personen ? bf.elements.personen.value : ''
       };
-      var ziel = bookingHref(daten);
-
       if (!bookingKonfiguriert()) {
+        /* Keine Buchungsmaschine hinterlegt: Der Gast geht auf die
+           Kontaktseite - und nimmt seine Eingaben mit, damit er sie dort
+           nicht noch einmal eintippen muss. */
         if (hinweis) { hinweis.hidden = false; }
-        window.location.href = ziel;
+        window.location.href = anfrageZiel(daten);
         return;
       }
-      window.open(ziel, '_blank', 'noopener');
+      window.open(bookingHref(daten), '_blank', 'noopener');
     });
   });
 
@@ -392,7 +420,9 @@
         return '<li>' + svgIcon(a.icon) + '<span>' + a.label + '</span></li>';
       }).join('');
 
-      var buchenZiel = bookingHref({ roomType: z.id });
+      var buchenZiel = bookingKonfiguriert()
+        ? bookingHref({ roomType: z.id })
+        : anfrageZiel({ roomType: z.id });
       var neuerTab = bookingKonfiguriert() ? ' target="_blank" rel="noopener"' : '';
 
       return '<article class="karte">'
@@ -621,6 +651,56 @@
           ziel.innerHTML = '<p class="hinweis">' + T.termineFehler(cfg.phone || '') + '</p>';
         });
       });
+  }
+
+  /* --- Kontaktseite vorbelegen -----------------------------------------
+     Kommt der Gast vom Buchungsformular der Startseite, stehen seine
+     Eingaben in der Adresszeile. Sie werden hier ins Formular gesetzt,
+     damit niemand zweimal tippen muss. */
+  var kontaktFormular = document.querySelector('[data-mail-form]');
+  if (kontaktFormular && window.location.search) {
+    var parameter = {};
+    window.location.search.replace(/^\?/, '').split('&').forEach(function (paar) {
+      var teil = paar.split('=');
+      if (teil[0]) { parameter[teil[0]] = decodeURIComponent((teil[1] || '').replace(/\+/g, ' ')); }
+    });
+
+    var setzen = function (name, wert) {
+      var feld = kontaktFormular.elements[name];
+      if (feld && wert) { feld.value = wert; }
+    };
+    setzen('anreise', parameter.anreise);
+    setzen('abreise', parameter.abreise);
+    setzen('personen', parameter.personen);
+
+    /* Zimmerwunsch: Kennung aus der Konfiguration in den Namen übersetzen */
+    if (parameter.zimmer) {
+      var zimmerListe2 = inhalt('rooms') || [];
+      var treffer = zimmerListe2.filter(function (z) { return z.id === parameter.zimmer; })[0];
+      var auswahl = kontaktFormular.elements.zimmer;
+      if (treffer && auswahl) {
+        Array.prototype.forEach.call(auswahl.options, function (o) {
+          if (o.textContent.trim() === treffer.name) { auswahl.value = o.value; }
+        });
+      }
+    }
+
+    /* Sichtbare Bestätigung, damit klar ist, dass die Daten angekommen sind */
+    var bestaetigung = document.querySelector('[data-prefill-note]');
+    if (bestaetigung && (parameter.anreise || parameter.abreise)) {
+      var datum = function (iso) {
+        if (!iso) { return ''; }
+        try {
+          return new Intl.DateTimeFormat(sprache === 'en' ? 'en-GB' : 'de-DE',
+            { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(iso));
+        } catch (fehler) { return iso; }
+      };
+      var zeitraum = parameter.abreise
+        ? datum(parameter.anreise) + ' ' + T.bis + ' ' + datum(parameter.abreise)
+        : datum(parameter.anreise);
+      bestaetigung.textContent = T.uebernommen(zeitraum, parameter.personen || '');
+      bestaetigung.hidden = false;
+    }
   }
 
   /* --- Kontaktformular ----------------------------------------------- */
