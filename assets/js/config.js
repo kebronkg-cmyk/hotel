@@ -141,6 +141,32 @@ window.HOTEL_CONFIG = {
     fruehstueck: ''
   },
 
+  /* --- Fakten-Leiste auf der Startseite --------------------------------
+     TODO: Werte prüfen. Achtung: auf lage.html steht ein Fußweg von
+     ca. 12 Minuten zum Hauptbahnhof - beide Angaben sollten zusammenpassen. */
+  facts: [
+    { value: '5 Min.',  label: 'zum Hauptbahnhof' },
+    { value: '24 h',    label: 'Rezeption' },
+    { value: 'gratis',  label: 'WLAN im ganzen Haus' }
+  ],
+
+  /* --- Bewertungen -----------------------------------------------------
+     TODO: Erst ausfüllen, wenn echte, nachweisbare Bewertungen vorliegen.
+     Solange hier Platzhalter stehen, kennzeichnet die Seite den Block
+     sichtbar als Platzhalter. Keine erfundenen Bewertungen eintragen.
+     "source" z. B. 'Google', 'Booking.com', 'Gästebuch'. */
+  reviews: {
+    score: '',            // z. B. '8,4' oder '4,3'
+    scoreMax: '5',        // Skala, z. B. '5' oder '10'
+    count: '',            // Anzahl der Bewertungen, z. B. '312'
+    source: '',           // Quelle der Gesamtnote
+    quotes: [
+      { text: '[Hier ein echtes Zitat einer Gästebewertung einsetzen.]', author: '[Name, Monat Jahr]' },
+      { text: '[Hier ein echtes Zitat einer Gästebewertung einsetzen.]', author: '[Name, Monat Jahr]' },
+      { text: '[Hier ein echtes Zitat einer Gästebewertung einsetzen.]', author: '[Name, Monat Jahr]' }
+    ]
+  },
+
   /* --- Impressum / rechtliche Angaben -------------------------------- */
   /* TODO: Durch die tatsaechlichen Angaben des Betreibers ersetzen. */
   legal: {

@@ -282,6 +282,137 @@ details.faq p { margin: 0 0 1rem; }
 .vorteile-3 li::before { left: .9rem; top: .8rem; }
 .vorteile-3 li strong { color: var(--text); font-size: 1rem; }
 
+
+/* --- Fakten-Leiste ---------------------------------------------------- */
+.fakten {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: .9rem .5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+  background: var(--blau);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.fakten li { color: #dbe5ee; }
+.fakt-wert {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+}
+.fakt-text { display: block; font-size: .82rem; line-height: 1.35; }
+
+/* --- Bewertungen ------------------------------------------------------ */
+.bewertung {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.note {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: .6rem 1rem;
+}
+.note-zahl { font-size: 1.8rem; font-weight: 700; color: var(--blau); }
+.note-skala { font-size: .9rem; color: var(--text-leise); }
+.note-quelle { margin: 0; color: var(--text-leise); font-size: .95rem; }
+
+.zitate { display: grid; gap: 1rem; }
+.zitat {
+  margin: 0;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.zitat blockquote {
+  margin: .4rem 0 .6rem;
+  font-style: italic;
+  color: var(--text);
+}
+.zitat figcaption { font-size: .88rem; color: var(--text-leise); }
+.badge-platzhalter {
+  background: #fdf3d8;
+  color: #7a5b12;
+  border: 1px solid #e8d4a0;
+}
+
+/* --- Galerie mit Lightbox --------------------------------------------- */
+.galerie-liste {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.galerie-knopf {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+}
+.galerie-knopf img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.galerie-titel {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: .35rem .5rem;
+  background: rgba(18, 58, 92, .82);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(10, 20, 30, .93);
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.offen { display: flex; }
+.lb-figur { margin: 0; max-width: 100%; max-height: 100%; text-align: center; }
+.lb-figur img {
+  max-width: 100%;
+  max-height: 76vh;
+  margin: 0 auto;
+  border-radius: var(--radius);
+}
+.lb-text { color: #eef2f6; font-size: .95rem; padding-top: .6rem; }
+.lb-knopf {
+  position: absolute;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.lb-knopf:hover { background: rgba(255, 255, 255, .25); }
+.lb-schliessen { top: 1rem; right: 1rem; }
+.lb-zurueck { left: .75rem; top: 50%; transform: translateY(-50%); }
+.lb-weiter { right: .75rem; top: 50%; transform: translateY(-50%); }
+.lb-knopf[hidden] { display: none; }
+
 /* --- Formular -------------------------------------------------------- */
 form.anfrage { display: grid; gap: .9rem; }
 .feld { display: grid; gap: .3rem; }
@@ -403,6 +534,11 @@ footer.fuss h2 { color: #fff; font-size: 1.05rem; margin-top: 0; }
   .vorteile-3 { grid-template-columns: repeat(3, 1fr); }
   .feld-paar { grid-template-columns: 1fr 1fr; }
   .galerie { grid-template-columns: repeat(3, 1fr); }
+  .zitate { grid-template-columns: repeat(3, 1fr); }
+  .galerie-liste { grid-template-columns: repeat(4, 1fr); }
+  .fakten { padding: 1.1rem .5rem; }
+  .fakt-wert { font-size: 1.4rem; }
+  .fakt-text { font-size: .9rem; }
 }
 
 @media (min-width: 52rem) {

@@ -305,6 +305,146 @@
     }).join('');
   }
 
+  /* --- Fakten-Leiste --------------------------------------------------
+     Werte stehen in config.js unter "facts". */
+  var faktenZiel = document.querySelector('[data-facts]');
+  if (faktenZiel && Array.isArray(cfg.facts) && cfg.facts.length) {
+    faktenZiel.innerHTML = cfg.facts.map(function (f) {
+      return '<li><span class="fakt-wert">' + (f.value || '') + '</span>'
+           + '<span class="fakt-text">' + (f.label || '') + '</span></li>';
+    }).join('');
+  }
+
+  /* --- Bewertungen -----------------------------------------------------
+     Solange in config.js keine echten Werte stehen, wird der Block
+     sichtbar als Platzhalter gekennzeichnet. */
+  var bewertungen = cfg.reviews || {};
+
+  var noteZiel = document.querySelector('[data-review-score]');
+  if (noteZiel) {
+    if (bewertungen.score) {
+      noteZiel.innerHTML = '<span class="note-zahl">' + bewertungen.score + '</span>'
+        + '<span class="note-skala">von ' + (bewertungen.scoreMax || '5') + '</span>';
+    } else {
+      noteZiel.innerHTML = '<span class="note-zahl">[Note]</span>'
+        + '<span class="note-skala">von ' + (bewertungen.scoreMax || '5') + '</span>';
+    }
+  }
+
+  var quelleZiel = document.querySelector('[data-review-source]');
+  if (quelleZiel) {
+    if (bewertungen.count && bewertungen.source) {
+      quelleZiel.textContent = 'aus ' + bewertungen.count + ' Bewertungen bei ' + bewertungen.source;
+    } else {
+      quelleZiel.textContent = 'aus [Anzahl] Bewertungen bei [Quelle]';
+    }
+  }
+
+  var zitatZiel = document.querySelector('[data-review-quotes]');
+  if (zitatZiel && Array.isArray(bewertungen.quotes)) {
+    var offenePlatzhalter = !bewertungen.score || bewertungen.quotes.some(function (z) {
+      return (z.text || '').indexOf('[') === 0;
+    });
+    var platzhalterHinweis = document.querySelector('[data-review-placeholder-note]');
+    if (platzhalterHinweis) { platzhalterHinweis.hidden = !offenePlatzhalter; }
+
+    zitatZiel.innerHTML = bewertungen.quotes.map(function (z) {
+      var text = z.text || '';
+      var istPlatzhalter = text.indexOf('[') === 0;
+      return '<figure class="zitat">'
+           + (istPlatzhalter ? '<span class="badge badge-platzhalter">Platzhalter</span>' : '')
+           + '<blockquote>' + text + '</blockquote>'
+           + '<figcaption>' + (z.author || '') + '</figcaption>'
+           + '</figure>';
+    }).join('');
+  }
+
+  /* --- Lightbox für die Galerie ---------------------------------------
+     Ohne Bibliothek. Bedienbar mit Maus, Tastatur (Esc, Pfeiltasten) und
+     per Klick auf den Hintergrund. */
+  var galerie = document.querySelector('[data-lightbox]');
+  if (galerie) {
+    var knoepfe = Array.prototype.slice.call(galerie.querySelectorAll('[data-bild]'));
+    var aktuell = 0;
+    var vorher = null;
+    var box = null;
+
+    var bauen = function () {
+      box = document.createElement('div');
+      box.className = 'lightbox';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.setAttribute('aria-label', 'Bildansicht');
+      box.innerHTML =
+          '<button type="button" class="lb-knopf lb-schliessen" aria-label="Schließen">&times;</button>'
+        + '<button type="button" class="lb-knopf lb-zurueck" aria-label="Vorheriges Bild">&lsaquo;</button>'
+        + '<figure class="lb-figur">'
+        + '<img alt="">'
+        + '<figcaption class="lb-text"></figcaption>'
+        + '</figure>'
+        + '<button type="button" class="lb-knopf lb-weiter" aria-label="Nächstes Bild">&rsaquo;</button>';
+      document.body.appendChild(box);
+
+      box.querySelector('.lb-schliessen').addEventListener('click', schliessen);
+      box.querySelector('.lb-zurueck').addEventListener('click', function () { blaettern(-1); });
+      box.querySelector('.lb-weiter').addEventListener('click', function () { blaettern(1); });
+      box.addEventListener('click', function (e) { if (e.target === box) { schliessen(); } });
+      return box;
+    };
+
+    var anzeigen = function (index) {
+      aktuell = (index + knoepfe.length) % knoepfe.length;
+      var knopf = knoepfe[aktuell];
+      var bild = box.querySelector('img');
+      bild.src = knopf.getAttribute('data-bild');
+      bild.alt = knopf.getAttribute('data-text') || '';
+      box.querySelector('.lb-text').textContent = knopf.getAttribute('data-text') || '';
+      var mehrere = knoepfe.length > 1;
+      box.querySelector('.lb-zurueck').hidden = !mehrere;
+      box.querySelector('.lb-weiter').hidden = !mehrere;
+    };
+
+    var blaettern = function (richtung) { anzeigen(aktuell + richtung); };
+
+    var tasten = function (e) {
+      if (e.key === 'Escape') { schliessen(); }
+      else if (e.key === 'ArrowLeft') { blaettern(-1); }
+      else if (e.key === 'ArrowRight') { blaettern(1); }
+      else if (e.key === 'Tab') {
+        /* Fokus in der Lightbox halten */
+        var ziele = Array.prototype.slice.call(box.querySelectorAll('button:not([hidden])'));
+        var i = ziele.indexOf(document.activeElement);
+        var naechster = e.shiftKey ? i - 1 : i + 1;
+        if (naechster < 0) { naechster = ziele.length - 1; }
+        if (naechster >= ziele.length) { naechster = 0; }
+        ziele[naechster].focus();
+        e.preventDefault();
+      }
+    };
+
+    function schliessen() {
+      if (!box) { return; }
+      box.classList.remove('offen');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', tasten);
+      if (vorher) { vorher.focus(); }
+    }
+
+    var oeffnen = function (index, ausloeser) {
+      if (!box) { bauen(); }
+      vorher = ausloeser;
+      anzeigen(index);
+      box.classList.add('offen');
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', tasten);
+      box.querySelector('.lb-schliessen').focus();
+    };
+
+    knoepfe.forEach(function (knopf, i) {
+      knopf.addEventListener('click', function () { oeffnen(i, knopf); });
+    });
+  }
+
   /* --- Kontaktformular ----------------------------------------------- */
   /* Kein Server, kein Tracking: das Formular oeffnet das E-Mail-Programm
      mit vorbereitetem Text. */

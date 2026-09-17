@@ -66,6 +66,20 @@ Ein leerer Parametername bedeutet: dieser Wert wird nicht übergeben.
 | `directBenefits` | drei Vorteilskacheln direkt unter dem Buchungsformular |
 | `bookingReasons` | Block „Direkt bei uns buchen lohnt sich" |
 | `rooms` | die Zimmerkarten auf `zimmer.html` |
+| `facts` | Fakten-Leiste auf der Startseite (z. B. „5 Min. zum Hauptbahnhof") |
+| `reviews` | Gesamtnote und Zitate im Bewertungsblock |
+
+### Bewertungen
+
+`reviews` ist bewusst leer vorbelegt. Solange keine Gesamtnote eingetragen ist
+oder ein Zitat mit `[` beginnt, kennzeichnet die Seite den Block sichtbar als
+Platzhalter („Platzhalter"-Kennzeichnung an jedem Zitat plus Hinweistext).
+Sobald echte Werte eingetragen sind, verschwindet die Kennzeichnung
+automatisch. Bitte nur echte, nachprüfbare Gästestimmen eintragen.
+
+**Achtung:** `facts` enthält als Platzhalter „5 Min. zum Hauptbahnhof", während
+auf `lage.html` ein Fußweg von ca. 12 Minuten steht. Bitte eine der beiden
+Angaben korrigieren, damit die Seite in sich stimmig bleibt.
 
 ### Zimmer pflegen
 

@@ -106,6 +106,13 @@
       <li><strong>Kostenlose Stornierung bis [X]</strong>Bis [X Uhr am Anreisetag] kostenfrei stornierbar.</li>
       <li><strong>Fr&uuml;hst&uuml;cks-Rabatt</strong>Bei Direktbuchung bekommen Sie das Fr&uuml;hst&uuml;ck f&uuml;r [X] statt [Y].</li>
     </ul>
+
+    <!-- Werte stehen in assets/js/config.js unter "facts". -->
+    <ul class="fakten" data-facts>
+      <li><span class="fakt-wert">5 Min.</span><span class="fakt-text">zum Hauptbahnhof</span></li>
+      <li><span class="fakt-wert">24 h</span><span class="fakt-text">Rezeption</span></li>
+      <li><span class="fakt-wert">gratis</span><span class="fakt-text">WLAN im ganzen Haus</span></li>
+    </ul>
   </div>
 </div>
 
@@ -216,24 +223,69 @@
 
 <section>
   <div class="wrap">
-    <h2>Fr&uuml;hst&uuml;ck, Bar und Aufenthalt</h2>
-    <div class="galerie">
-      <figure>
-        <img src="assets/img/fruehstueck.jpg" alt="Fr&uuml;hst&uuml;cksraum" width="1600" height="1067" loading="lazy">
-        <figcaption>Fr&uuml;hst&uuml;ck: <span data-cfg="breakfastHours">07:00 &ndash; 10:00 Uhr</span></figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/bar.jpg" alt="Bar im Hotel" width="1600" height="1067" loading="lazy">
-        <figcaption>Bar f&uuml;r den Abend</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/lounge.jpg" alt="Aufenthaltsbereich" width="1600" height="1067" loading="lazy">
-        <figcaption>Aufenthaltsbereich mit WLAN</figcaption>
+    <h2>Was G&auml;ste sagen</h2>
+
+    <!-- TODO: Bewertungen in assets/js/config.js unter "reviews" eintragen.
+         Bitte nur echte, nachpr&uuml;fbare G&auml;stestimmen verwenden. Solange
+         dort Platzhalter stehen, kennzeichnet die Seite das sichtbar. -->
+    <div class="bewertung">
+      <div class="note" data-review-score>
+        <span class="note-zahl">[Note]</span><span class="note-skala">von 5</span>
+      </div>
+      <p class="note-quelle" data-review-source>aus [Anzahl] Bewertungen bei [Quelle]</p>
+    </div>
+
+    <div class="zitate" data-review-quotes>
+      <figure class="zitat">
+        <span class="badge badge-platzhalter">Platzhalter</span>
+        <blockquote>[Hier ein echtes Zitat einer G&auml;stebewertung einsetzen.]</blockquote>
+        <figcaption>[Name, Monat Jahr]</figcaption>
       </figure>
     </div>
-    <p style="margin-top:1rem">Das Fr&uuml;hst&uuml;ck k&ouml;nnen Sie bei der Buchung
-       oder sp&auml;ter an der Rezeption dazubuchen
-       (<span data-price="fruehstueck">Preis auf Anfrage</span>).</p>
+
+    <p class="hinweis" data-review-placeholder-note>
+      Diese Seite zeigt noch Platzhalter. Wir ver&ouml;ffentlichen hier nur echte
+      Bewertungen von G&auml;sten, die tats&auml;chlich bei uns &uuml;bernachtet haben.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Einblicke ins Haus</h2>
+    <p>Bar, Fr&uuml;hst&uuml;cksraum, Flur und Zimmer &ndash; zum Vergr&ouml;&szlig;ern auf ein Bild tippen.</p>
+
+    <ul class="galerie-liste" data-lightbox>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="assets/img/bar.jpg" data-text="Bar im Hotel Montree">
+          <img src="assets/img/bar.jpg" alt="Bar im Hotel Montree" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Bar</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="assets/img/fruehstueck.jpg" data-text="Fr&uuml;hst&uuml;cksraum">
+          <img src="assets/img/fruehstueck.jpg" alt="Fr&uuml;hst&uuml;cksraum" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Fr&uuml;hst&uuml;ck</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="assets/img/flur.jpg" data-text="Flur und Treppenhaus">
+          <img src="assets/img/flur.jpg" alt="Flur und Treppenhaus" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Flur</span>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="galerie-knopf" data-bild="assets/img/zimmer-doppel.jpg" data-text="Doppelzimmer">
+          <img src="assets/img/zimmer-doppel.jpg" alt="Doppelzimmer" width="1600" height="1067" loading="lazy" decoding="async">
+          <span class="galerie-titel">Zimmer</span>
+        </button>
+      </li>
+    </ul>
+
+    <p style="margin-top:1rem">Das Fr&uuml;hst&uuml;ck k&ouml;nnen Sie bei der Buchung oder
+       sp&auml;ter an der Rezeption dazubuchen
+       (<span data-price="fruehstueck">Preis auf Anfrage</span>,
+       <span data-cfg="breakfastHours">07:00 &ndash; 10:00 Uhr</span>).</p>
   </div>
 </section>
 
